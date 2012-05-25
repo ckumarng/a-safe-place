@@ -1,0 +1,55 @@
+2012-05-25 11:58:10 Error: [MissingActionException] Action AppController::index() could not be found.
+#0 /var/www/html/a-safe-place/phpcake/lib/Cake/Routing/Dispatcher.php(103): Controller->invokeAction(Object(CakeRequest))
+#1 /var/www/html/a-safe-place/phpcake/lib/Cake/Routing/Dispatcher.php(85): Dispatcher->_invoke(Object(AppController), Object(CakeRequest), Object(CakeResponse))
+#2 /var/www/html/a-safe-place/phpcake/app/webroot/index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#3 {main}
+2012-05-25 11:58:44 Error: [MissingActionException] Action AppController::index() could not be found.
+#0 /var/www/html/a-safe-place/phpcake/lib/Cake/Routing/Dispatcher.php(103): Controller->invokeAction(Object(CakeRequest))
+#1 /var/www/html/a-safe-place/phpcake/lib/Cake/Routing/Dispatcher.php(85): Dispatcher->_invoke(Object(AppController), Object(CakeRequest), Object(CakeResponse))
+#2 /var/www/html/a-safe-place/phpcake/app/webroot/index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#3 {main}
+2012-05-25 12:13:26 Error: [MissingControllerException] Controller class AsdfaController could not be found.
+#0 /var/www/html/a-safe-place/phpcake/app/webroot/index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2012-05-25 12:16:16 Error: [MissingControllerException] Controller class ModelController could not be found.
+#0 /var/www/html/a-safe-place/phpcake/app/webroot/index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2012-05-25 12:21:16 Error: [MissingControllerException] Controller class POSTController could not be found.
+#0 /var/www/html/a-safe-place/phpcake/app/webroot/index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2012-05-25 12:21:20 Error: [MissingControllerException] Controller class POSTController could not be found.
+#0 /var/www/html/a-safe-place/phpcake/app/webroot/index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2012-05-25 12:21:23 Error: [MissingControllerException] Controller class PostController could not be found.
+#0 /var/www/html/a-safe-place/phpcake/app/webroot/index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2012-05-25 12:21:28 Error: [MissingTableException] Table iter1_posts for model Post was not found in datasource default.
+#0 /var/www/html/a-safe-place/phpcake/lib/Cake/Model/Model.php(3443): Model->setSource('posts')
+#1 /var/www/html/a-safe-place/phpcake/lib/Cake/Model/Model.php(2698): Model->getDataSource()
+#2 /var/www/html/a-safe-place/phpcake/app/Controller/PostsController.php(6): Model->find('all')
+#3 [internal function]: PostsController->index()
+#4 /var/www/html/a-safe-place/phpcake/lib/Cake/Controller/Controller.php(485): ReflectionMethod->invokeArgs(Object(PostsController), Array)
+#5 /var/www/html/a-safe-place/phpcake/lib/Cake/Routing/Dispatcher.php(103): Controller->invokeAction(Object(CakeRequest))
+#6 /var/www/html/a-safe-place/phpcake/lib/Cake/Routing/Dispatcher.php(85): Dispatcher->_invoke(Object(PostsController), Object(CakeRequest), Object(CakeResponse))
+#7 /var/www/html/a-safe-place/phpcake/app/webroot/index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#8 {main}
+2012-05-25 13:02:54 Error: [MissingControllerException] Controller class StudyController could not be found.
+#0 /var/www/html/a-safe-place/phpcake/app/webroot/index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2012-05-25 13:03:25 Error: [MissingControllerException] Controller class StudyController could not be found.
+#0 /var/www/html/a-safe-place/phpcake/app/webroot/index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2012-05-25 13:03:38 Error: [MissingControllerException] Controller class StudyController could not be found.
+#0 /var/www/html/a-safe-place/phpcake/app/webroot/index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2012-05-25 13:03:51 Error: [MissingControllerException] Controller class StudyController could not be found.
+#0 /var/www/html/a-safe-place/phpcake/app/webroot/index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2012-05-25 13:03:52 Error: [MissingControllerException] Controller class StudyController could not be found.
+#0 /var/www/html/a-safe-place/phpcake/app/webroot/index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2012-05-25 13:04:20 Error: [MissingActionException] Action StudyController::index() could not be found.
+#0 /var/www/html/a-safe-place/phpcake/lib/Cake/Routing/Dispatcher.php(103): Controller->invokeAction(Object(CakeRequest))
+#1 /var/www/html/a-safe-place/phpcake/lib/Cake/Routing/Dispatcher.php(85): Dispatcher->_invoke(Object(StudyController), Object(CakeRequest), Object(CakeResponse))
+#2 /var/www/html/a-safe-place/phpcake/app/webroot/index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#3 {main}

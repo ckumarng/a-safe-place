@@ -1,0 +1,48 @@
+[25-May-2012 16:43:57 UTC] PHP Warning:  strtotime(): It is not safe to rely on the system's timezone settings. You are *required* to use the date.timezone setting or the date_default_timezone_set() function. In case you used any of those methods and you are still getting this warning, you most likely misspelled the timezone identifier. We selected 'America/Chicago' for 'CDT/-5.0/DST' instead in /var/www/html/a-safe-place/phpcake/lib/Cake/Cache/CacheEngine.php on line 45
+[25-May-2012 16:43:57 UTC] PHP Stack trace:
+[25-May-2012 16:43:57 UTC] PHP   1. {main}() /var/www/html/a-safe-place/phpcake/index.php:0
+[25-May-2012 16:43:57 UTC] PHP   2. require() /var/www/html/a-safe-place/phpcake/index.php:40
+[25-May-2012 16:43:57 UTC] PHP   3. include() /var/www/html/a-safe-place/phpcake/app/webroot/index.php:81
+[25-May-2012 16:43:57 UTC] PHP   4. Configure::bootstrap() /var/www/html/a-safe-place/phpcake/lib/Cake/bootstrap.php:142
+[25-May-2012 16:43:57 UTC] PHP   5. include() /var/www/html/a-safe-place/phpcake/lib/Cake/Core/Configure.php:72
+[25-May-2012 16:43:57 UTC] PHP   6. Cache::config() /var/www/html/a-safe-place/phpcake/app/Config/core.php:266
+[25-May-2012 16:43:57 UTC] PHP   7. Cache::_buildEngine() /var/www/html/a-safe-place/phpcake/lib/Cake/Cache/Cache.php:133
+[25-May-2012 16:43:57 UTC] PHP   8. ApcEngine->init() /var/www/html/a-safe-place/phpcake/lib/Cake/Cache/Cache.php:162
+[25-May-2012 16:43:57 UTC] PHP   9. CacheEngine->init() /var/www/html/a-safe-place/phpcake/lib/Cake/Cache/Engine/ApcEngine.php:39
+[25-May-2012 16:43:57 UTC] PHP  10. strtotime() /var/www/html/a-safe-place/phpcake/lib/Cake/Cache/CacheEngine.php:45
+[25-May-2012 16:43:57 UTC] PHP Warning:  strtotime(): It is not safe to rely on the system's timezone settings. You are *required* to use the date.timezone setting or the date_default_timezone_set() function. In case you used any of those methods and you are still getting this warning, you most likely misspelled the timezone identifier. We selected 'America/Chicago' for 'CDT/-5.0/DST' instead in /var/www/html/a-safe-place/phpcake/lib/Cake/Cache/CacheEngine.php on line 45
+[25-May-2012 16:43:57 UTC] PHP Stack trace:
+[25-May-2012 16:43:57 UTC] PHP   1. {main}() /var/www/html/a-safe-place/phpcake/index.php:0
+[25-May-2012 16:43:57 UTC] PHP   2. require() /var/www/html/a-safe-place/phpcake/index.php:40
+[25-May-2012 16:43:57 UTC] PHP   3. include() /var/www/html/a-safe-place/phpcake/app/webroot/index.php:81
+[25-May-2012 16:43:57 UTC] PHP   4. Configure::bootstrap() /var/www/html/a-safe-place/phpcake/lib/Cake/bootstrap.php:142
+[25-May-2012 16:43:57 UTC] PHP   5. include() /var/www/html/a-safe-place/phpcake/lib/Cake/Core/Configure.php:72
+[25-May-2012 16:43:57 UTC] PHP   6. Cache::config() /var/www/html/a-safe-place/phpcake/app/Config/core.php:278
+[25-May-2012 16:43:57 UTC] PHP   7. Cache::_buildEngine() /var/www/html/a-safe-place/phpcake/lib/Cake/Cache/Cache.php:133
+[25-May-2012 16:43:57 UTC] PHP   8. ApcEngine->init() /var/www/html/a-safe-place/phpcake/lib/Cake/Cache/Cache.php:162
+[25-May-2012 16:43:57 UTC] PHP   9. CacheEngine->init() /var/www/html/a-safe-place/phpcake/lib/Cake/Cache/Engine/ApcEngine.php:39
+[25-May-2012 16:43:57 UTC] PHP  10. strtotime() /var/www/html/a-safe-place/phpcake/lib/Cake/Cache/CacheEngine.php:45
+[25-May-2012 16:46:37 UTC] PHP Warning:  strtotime(): It is not safe to rely on the system's timezone settings. You are *required* to use the date.timezone setting or the date_default_timezone_set() function. In case you used any of those methods and you are still getting this warning, you most likely misspelled the timezone identifier. We selected 'America/Chicago' for 'CDT/-5.0/DST' instead in /var/www/html/a-safe-place/phpcake/lib/Cake/Cache/CacheEngine.php on line 45
+[25-May-2012 16:46:37 UTC] PHP Stack trace:
+[25-May-2012 16:46:37 UTC] PHP   1. {main}() /var/www/html/a-safe-place/phpcake/index.php:0
+[25-May-2012 16:46:37 UTC] PHP   2. require() /var/www/html/a-safe-place/phpcake/index.php:40
+[25-May-2012 16:46:37 UTC] PHP   3. include() /var/www/html/a-safe-place/phpcake/app/webroot/index.php:81
+[25-May-2012 16:46:37 UTC] PHP   4. Configure::bootstrap() /var/www/html/a-safe-place/phpcake/lib/Cake/bootstrap.php:142
+[25-May-2012 16:46:37 UTC] PHP   5. include() /var/www/html/a-safe-place/phpcake/lib/Cake/Core/Configure.php:72
+[25-May-2012 16:46:37 UTC] PHP   6. Cache::config() /var/www/html/a-safe-place/phpcake/app/Config/core.php:266
+[25-May-2012 16:46:37 UTC] PHP   7. Cache::_buildEngine() /var/www/html/a-safe-place/phpcake/lib/Cake/Cache/Cache.php:133
+[25-May-2012 16:46:37 UTC] PHP   8. ApcEngine->init() /var/www/html/a-safe-place/phpcake/lib/Cake/Cache/Cache.php:162
+[25-May-2012 16:46:37 UTC] PHP   9. CacheEngine->init() /var/www/html/a-safe-place/phpcake/lib/Cake/Cache/Engine/ApcEngine.php:39
+[25-May-2012 16:46:37 UTC] PHP  10. strtotime() /var/www/html/a-safe-place/phpcake/lib/Cake/Cache/CacheEngine.php:45
+[25-May-2012 16:46:37 UTC] PHP Warning:  strtotime(): It is not safe to rely on the system's timezone settings. You are *required* to use the date.timezone setting or the date_default_timezone_set() function. In case you used any of those methods and you are still getting this warning, you most likely misspelled the timezone identifier. We selected 'America/Chicago' for 'CDT/-5.0/DST' instead in /var/www/html/a-safe-place/phpcake/lib/Cake/Cache/CacheEngine.php on line 45
+[25-May-2012 16:46:37 UTC] PHP Stack trace:
+[25-May-2012 16:46:37 UTC] PHP   1. {main}() /var/www/html/a-safe-place/phpcake/index.php:0
+[25-May-2012 16:46:37 UTC] PHP   2. require() /var/www/html/a-safe-place/phpcake/index.php:40
+[25-May-2012 16:46:37 UTC] PHP   3. include() /var/www/html/a-safe-place/phpcake/app/webroot/index.php:81
+[25-May-2012 16:46:37 UTC] PHP   4. Configure::bootstrap() /var/www/html/a-safe-place/phpcake/lib/Cake/bootstrap.php:142
+[25-May-2012 16:46:37 UTC] PHP   5. include() /var/www/html/a-safe-place/phpcake/lib/Cake/Core/Configure.php:72
+[25-May-2012 16:46:37 UTC] PHP   6. Cache::config() /var/www/html/a-safe-place/phpcake/app/Config/core.php:278
+[25-May-2012 16:46:37 UTC] PHP   7. Cache::_buildEngine() /var/www/html/a-safe-place/phpcake/lib/Cake/Cache/Cache.php:133
+[25-May-2012 16:46:37 UTC] PHP   8. ApcEngine->init() /var/www/html/a-safe-place/phpcake/lib/Cake/Cache/Cache.php:162
+[25-May-2012 16:46:37 UTC] PHP   9. CacheEngine->init() /var/www/html/a-safe-place/phpcake/lib/Cake/Cache/Engine/ApcEngine.php:39
+[25-May-2012 16:46:37 UTC] PHP  10. strtotime() /var/www/html/a-safe-place/phpcake/lib/Cake/Cache/CacheEngine.php:45

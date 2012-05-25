@@ -1,0 +1,6 @@
+<?php
+class StudyController extends AppController {
+	public function index(){
+	}
+}
+?>
