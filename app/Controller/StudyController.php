@@ -18,10 +18,10 @@ class StudyController extends AppController {
                 print_r($this->data['Login']['ID']);
                 if( $this->data['Login']['ID'] != '' ){
                     //$this->Session->activate();
-                    print_r($this -> Session -> read());
+                    //print_r($this -> Session -> read());
                     if ($this->Session->started()){
 
-                        echo 'cool';
+                        //echo 'cool';
                         $this->Session->write ('pid',trim($this->data['Login']['ID']));
 
                     }
@@ -37,7 +37,7 @@ class StudyController extends AppController {
         function firstStudy( $user_id = 0 ){
             echo 'Session_ID=';
             print_r($this->Session->read('pid'));
-            print_r($_SESSION);
+           // print_r($_SESSION);
             //echo debug($this->data);
             //$this->data['timeTaken'] = time() - (int) $this->data['Q1']['time'];
             //$timeNow = time();
