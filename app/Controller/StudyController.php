@@ -13,6 +13,8 @@ class StudyController extends AppController {
 
 	}
         function login(){
+            //if ( $this->Session->check('pid'))
+
 
             if($this->request->is('post')){
                 print_r($this->data['Login']['ID']);
@@ -23,10 +25,16 @@ class StudyController extends AppController {
 
                         //echo 'cool';
                         $this->Session->write ('pid',trim($this->data['Login']['ID']));
-
+                        if ( ! $this->Session->check('activity'))
+                            $this->Session->write ('activity', 1);
                     }
+
+
+
                     print_r($this -> Session ->error());
+                    $this->redirect ('/study/firstStudy');
                 }
+
             }
 
 
@@ -35,6 +43,10 @@ class StudyController extends AppController {
 
         }
         function firstStudy( $user_id = 0 ){
+
+            if ( ! $this->Session->check('pid'))
+                $this->redirect ('/study/login');
+
             echo 'Session_ID=';
             print_r($this->Session->read('pid'));
            // print_r($_SESSION);
