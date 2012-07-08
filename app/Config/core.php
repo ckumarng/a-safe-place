@@ -173,8 +173,10 @@
  *
  */
 	Configure::write('Session', array(
-		'defaults' => 'php'
+		//'defaults' => 'php'
+            'defaults' => 'php'
 	));
+        //Configure::write('Session.save','my_session');
 
 /**
  * The level of CakePHP security.
@@ -226,7 +228,7 @@
 	Configure::write('Acl.database', 'default');
 
 /**
- * Uncomment this line and correct your server timezone to fix 
+ * Uncomment this line and correct your server timezone to fix
  * any date & time related errors.
  */
 	//date_default_timezone_set('UTC');
@@ -236,7 +238,7 @@
  * If running via cli - apc is disabled by default. ensure it's available and enabled in this case
  *
  * Note: 'default' and other application caches should be configured in app/Config/bootstrap.php.
- *       Please check the comments in boostrap.php for more info on the cache engines available 
+ *       Please check the comments in boostrap.php for more info on the cache engines available
  *       and their setttings.
  */
 $engine = 'File';
