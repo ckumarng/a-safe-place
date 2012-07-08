@@ -63,6 +63,7 @@ endif;
 </p>
 <p>
 	<?php
+          
 		$settings = Cache::settings();
 		if (!empty($settings)):
 			echo '<span class="notice success">';
