@@ -63,7 +63,6 @@ endif;
 </p>
 <p>
 	<?php
-          
 		$settings = Cache::settings();
 		if (!empty($settings)):
 			echo '<span class="notice success">';
@@ -131,8 +130,8 @@ if (isset($filePresent)):
 <h3><?php echo __d('cake_dev', 'Editing this Page'); ?></h3>
 <p>
 <?php
-echo __d('cake_dev', 'To change the content of this page, create: APP/View/Pages/home.ctp.<br />
-To change its layout, create: APP/View/Layouts/default.ctp.<br />
+echo __d('cake_dev', 'To change the content of this page, edit: APP/View/Pages/home.ctp.<br />
+To change its layout, edit: APP/View/Layouts/default.ctp.<br />
 You can also add some CSS styles for your pages at: APP/webroot/css.');
 ?>
 </p>
