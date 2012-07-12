@@ -6,7 +6,8 @@ class StudyController extends AppController {
 //       //
 //    }
 	public function index(){
-
+          //  if ( ! $this->Session->check('pid'))
+           //     $this->redirect ('/study/login');
             //$this->set('posts', $this->Post->find('all'));
             //for displaying posts... not helpful
 	// constructor function
@@ -17,7 +18,7 @@ class StudyController extends AppController {
 
 
             if($this->request->is('post')){
-                print_r($this->data['Login']['ID']);
+ print_r($this->data);
                 if( $this->data['Login']['ID'] != '' ){
                     //$this->Session->activate();
                     //print_r($this -> Session -> read());
@@ -27,12 +28,15 @@ class StudyController extends AppController {
                         $this->Session->write ('pid',trim($this->data['Login']['ID']));
                         if ( ! $this->Session->check('activity'))
                             $this->Session->write ('activity', 1);
+
+                  // print_r($this -> Session ->error());
+
                     }
 
-
-
-                    print_r($this -> Session ->error());
+                 if (  $this->Session->check('pid'))
                     $this->redirect ('/study/firstStudy');
+
+
                 }
 
             }
@@ -43,7 +47,6 @@ class StudyController extends AppController {
 
         }
         function firstStudy( $user_id = 0 ){
-
             if ( ! $this->Session->check('pid'))
                 $this->redirect ('/study/login');
 
