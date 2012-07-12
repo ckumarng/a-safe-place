@@ -85,7 +85,7 @@ class StudyController extends AppController {
             else $timeTaken = 0;
 
 
-            echo $timedone;
+           // echo $timedone;
           // echo TIME_START.':';
 
 
@@ -97,23 +97,42 @@ class StudyController extends AppController {
             //$timeNow = time();
             //$timeSent = $this->data['Q1']['time'];
             //echo $this->data['timeTaken'];
-            echo $this->Study->id;
+            //echo $this->Study->id;
             if ($this->request->is('get')) {
 
             }
 
             $timeleft = $timedone - $currentTime;
+            $firstnum = rand(1, 9);
+            $secondnum = rand(21, 99);
 
 
+            //echo "\n is correct?".$correct;
 
+            //print_r($this->data['Q1'][$firstnum.' * '.$secondnum.' =']);
+            //print_r($this->data['Q1']['answer']);
+
+
+            if (isset($this->data['Q1'])) {
+
+                $correct = (int)$this->data['Q1']['first']*(int)$this->data['Q1']['second'];
+
+
+               echo $correct.':'.(int)$this->data['Q1']['answer'];
+
+           if ( $correct == (int)$this->data['Q1']['answer'] )
+            echo "\n CORRECT!";
+            }
 
             $data = array(
-                'firstnum' => rand(1, 9),
-                'secondnum' => rand(21, 99),
+                'firstnum' => $firstnum,
+                'secondnum' => $secondnum,
                 'nextPage' => $nextPage,
                 'timeleft' => $timeleft
             );
             $this->set($data);
+
+
 
 
         }
