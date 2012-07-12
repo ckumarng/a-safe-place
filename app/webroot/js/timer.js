@@ -24,43 +24,33 @@ function CreateTimer(TimerID, Time, ForwardTo ) {
 
         Minutes = Math.floor( TotalSeconds / 60 );
 
-        if ( TotalSeconds < 60 )
-            if ( TotalSeconds < 10 )
-            Seconds = '0' + TotalSeconds;
-            else
-                Seconds = TotalSeconds;
-        else
-            Seconds = 60 - (TotalSeconds % 60);
+
+            Seconds = TotalSeconds - (Minutes * 60);
+
+        if ( Seconds < 10 )
+                    Seconds = '0' + Seconds;
 
         UpdateTimer()
         window.setTimeout("Tick()", 1000);
 }
 function Tick() {
-        if ( TotalSeconds < 60 )
-           Minutes = 0;
-       else
-        Minutes = Math.floor( TotalSeconds / 60 );
-
         TotalSeconds -= 1;
         Seconds -= 1;
         PSeconds = Seconds;
 
         if ( Seconds < 0)
-            Seconds = 0 ;
+            PSeconds = 0 ;
 
-        if ( Seconds == 60 )
-            Seconds = '00';
+        if ( Seconds < 0 )
+            Seconds = 59;
 
         if ( Seconds < 10 )
             Seconds = '0' + Seconds;
 
-        if( TotalSeconds % 60 == 0){
-            Seconds = 60;
-        }
-        if ( TotalSeconds <= 0 )
+        if( TotalSeconds % 60 == 0)
             Seconds = '00';
 
-        if ( TotalSeconds > 0 ){
+        if ( TotalSeconds >= 0 ){
             UpdateTimer()
             window.setTimeout("Tick()", 1000);
         }
@@ -69,6 +59,7 @@ function Tick() {
         }
 }
 function UpdateTimer() {
+        Minutes = Math.floor( TotalSeconds / 60 );
         document.getElementById("timer").innerHTML = Minutes + ':' + Seconds;
 }
 function move() {
