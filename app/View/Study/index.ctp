@@ -1,7 +1,11 @@
 <h1>
 Hello!
 </h1>
-<?php //echo $this->Html->link('Add Post', array('controller' => 'study', 'action' => 'login')); ?>
+<?php //echo $this->Html->link('Add Post', array('controller' => 'study', 'action' => 'login'));
+
+
+
+?>
 
 <?php
 echo $this->Html->charset();
