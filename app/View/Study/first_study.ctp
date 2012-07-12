@@ -7,6 +7,8 @@ if ( isset($this->data['Q1'])  )
     $timeTaken = time() - (int) $this->data['Q1']['time'];
 else $timeTaken = 0;
 */
+
+
 echo $this->Html->script('timer');
 echo $this->Form->create('Q1');
 
@@ -96,10 +98,12 @@ document.getElementById("timer").innerHTML=t;
 echo $this->Form->input('time', array('type' => 'hidden', 'value'=> time()));
 echo $this->Form->end('Submit');
 
-echo $timetaken;
+echo $this->Form->create('reset');
+echo $this->Form->input('time', array('type' => 'hidden', 'value'=> 'reset'));
+echo $this->Form->end('reset');
 ?>
 </div>
 
 
 
-<script type="text/javascript">window.onload = CreateTimer("timer",<?php echo $seconds ?> - <?php echo $timeTaken ?>,"<?php echo $nextPage ?>" );</script>
+<script type="text/javascript">window.onload = CreateTimer("timer",<?php echo $timeleft ?>,"<?php echo $nextPage ?>" );</script>

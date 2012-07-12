@@ -52,12 +52,45 @@ class StudyController extends AppController {
         function admin(){
 
         }
-        function firstStudy( $user_id = 0 ){
+        function firstStudy( $user_id = 0, $minutes = 2, $nextPage = 'http://localhost:8080/nextSection' ){
            // if ( ! $this->Session->check('pid'))
            //     $this->redirect ('/study/login');
 
-            echo 'Session_ID=';
-            print_r($this->Session->read('pid'));
+            $seconds = 60 * $minutes;
+
+            // $seconds = ;
+
+            // print_r($this->data);
+
+            $currentTime = time();
+
+            if ( ! $this->Session->check('doneTime')) {
+                $this->Session->write ('doneTime', $currentTime + $seconds);
+            }
+
+            if( isset($this->data['reset']) )
+                $this->Session->write ('doneTime', $currentTime + $seconds);
+
+
+            $timedone = $this->Session->read('doneTime');
+
+            if ($timedone  - $currentTime < 0  ){
+
+                $this->Session->write ('doneTime', $currentTime + $seconds);
+            }
+
+
+            if ( isset($this->data['Q1'])  )
+                $timeTaken = $currentTime - (int) $this->data['Q1']['time'];
+            else $timeTaken = 0;
+
+
+            echo $timedone;
+          // echo TIME_START.':';
+
+
+            //echo 'Session_ID=';
+            //print_r($timedone);
            // print_r($_SESSION);
             //echo debug($this->data);
             //$this->data['timeTaken'] = time() - (int) $this->data['Q1']['time'];
@@ -69,12 +102,13 @@ class StudyController extends AppController {
 
             }
 
-            if ( isset($this->data['Q1'])  )
-    $timeTaken = time() - (int) $this->data['Q1']['time'];
-else $timeTaken = 0;
-            $minutes = 2;
-            $seconds = 60 * $minutes;
-            $nextPage = 'http://localhost:8080/study/firstStudy';
+            $timeleft = $timedone - $currentTime;
+
+            $data = array(
+                'nextPage' => $nextPage,
+                'timeleft' => $timeleft
+            );
+            $this->set($data);
 
         }
                 function time_elapsed($secs){
@@ -89,6 +123,8 @@ else $timeTaken = 0;
 
     foreach($bit as $k => $v)
         if($v > 0)$ret[] = $v . $k;
+
+
 
     return join(' ', $ret);
     }
