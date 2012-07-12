@@ -65,7 +65,7 @@ echo $this->Form->create('Q1');
 </table>
 
 
-
+<?php echo $firstnum.' * '.$secondnum.' = '; ?>
 
 
 

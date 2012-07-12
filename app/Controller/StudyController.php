@@ -58,7 +58,7 @@ class StudyController extends AppController {
 
             $seconds = 60 * $minutes;
 
-            // $seconds = ;
+             //$seconds = 15;
 
             // print_r($this->data);
 
@@ -104,29 +104,18 @@ class StudyController extends AppController {
 
             $timeleft = $timedone - $currentTime;
 
+
+
+
             $data = array(
+                'firstnum' => rand(1, 9),
+                'secondnum' => rand(21, 99),
                 'nextPage' => $nextPage,
                 'timeleft' => $timeleft
             );
             $this->set($data);
 
+
         }
-                function time_elapsed($secs){
-    $bit = array(
-        'y' => $secs / 31556926 % 12,
-        'w' => $secs / 604800 % 52,
-        'd' => $secs / 86400 % 7,
-        'h' => $secs / 3600 % 24,
-        'm' => $secs / 60 % 60,
-        's' => $secs % 60
-        );
-
-    foreach($bit as $k => $v)
-        if($v > 0)$ret[] = $v . $k;
-
-
-
-    return join(' ', $ret);
-    }
 }
 ?>
