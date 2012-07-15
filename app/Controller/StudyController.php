@@ -8,7 +8,9 @@ class StudyController extends AppController {
     //var $uses = array('Timetaken');
     var $timetaken = 0;
 	public function index(){
-            debug($this->hasMany);
+            //$this->Study->connector();
+            //$this->RandomNumbers->reset();
+            debug($this->data);
 
           //  if ( ! $this->Session->check('pid'))
            //     $this->redirect ('/study/login');

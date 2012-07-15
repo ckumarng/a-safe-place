@@ -1,11 +1,12 @@
 <?php
 class Study extends AppModel {
-
-var $hasMany = array( 'Randoms' => 'RandomNumber',    );
-
+ var $name = 'Study';
+ var $hasMany = array( 'MyRecipe' => 'RandomNumber' );
+ var $hasAndBelongsToMany = array('Member' => 'Study');
 
 function Study(){
 
+    //$this->RandomNumbers->reset();
 
 }
 //    function Study(){
@@ -19,6 +20,11 @@ function Study(){
             'rule' => 'notEmpty'
         )
     );
+
+       function connector(){
+           $this->RandomNumber->fill_table();
+           //StudyController::reset();
+       }
 
 
 	function new_study(){
