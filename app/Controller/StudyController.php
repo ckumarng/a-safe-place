@@ -1,6 +1,7 @@
 <?php
 class StudyController extends AppController {
-    public $helpers = array('Html', 'Form','Session');
+    var $name = 'Study';
+    var $helpers = array('Html', 'Form','Session');
     //public $timeTaken = 0;
 //    function StudyController(){
 //       //
@@ -56,23 +57,36 @@ class StudyController extends AppController {
         function admin(){
 
         }
-        function firstStudy( $user_id = 0, $minutes = 2, $nextPage = 'http://localhost:8080/nextSection' ){
+
+	/*
+	 firstStudy - This function handles moving the user through a series
+		      of questions, tracking the time taken and progress.
+		      The following general logic is implemented here:
+	    * Check to see if the user is logged in; if not, redirect to
+	      login page.
+	    * Check to see if the timer is already running; if not, initialize
+	      it in the session.
+	*/
+        function firstStudy( $user_id = 0, 
+			     $minutes = 2, 
+			     $nextPage = 'http://localhost:8080/nextSection' 
+        ){
            // if ( ! $this->Session->check('pid'))
            //     $this->redirect ('/study/login');
 
-            $seconds = 60 * $minutes;
+           $seconds = 60 * $minutes;
 
-             //$seconds = 15;
+           //$seconds = 15;
 
-            // print_r($this->data);
+           // print_r($this->data);
 
-            $currentTime = time();
+           $currentTime = time();
 
-            if ( ! $this->Session->check('doneTime')) {
+           if ( ! $this->Session->check('doneTime')) {
                 $this->Session->write ('doneTime', $currentTime + $seconds);
-            }
+           }
 
-            if( isset($this->data['reset']) )
+           if( isset($this->data['reset']) )
                 $this->Session->write ('doneTime', $currentTime + $seconds);
 
 
