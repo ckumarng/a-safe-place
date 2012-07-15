@@ -15,5 +15,5 @@
         echo $this->Form->input('password');
     ?>
     </fieldset>
-<?php echo $this->Form->end(__('Login')); ?>
+<?php echo $this->Form->end(__('Login') ); ?>
 </div>
