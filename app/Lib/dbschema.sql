@@ -14,7 +14,7 @@ CREATE TABLE IF NOT EXISTS `survey` (
   `12` varchar(254) NOT NULL DEFAULT '',
   `13` varchar(254) NOT NULL DEFAULT '',
   PRIMARY KEY (`user_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+) ;
 
 CREATE TABLE IF NOT EXISTS `answers` (
   `module_id` bigint(10) unsigned NOT NULL,
@@ -22,7 +22,7 @@ CREATE TABLE IF NOT EXISTS `answers` (
   `time_taken` time NOT NULL,
   `correct` bit(1) NOT NULL,
   PRIMARY KEY (`module_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+) ;
 
 CREATE TABLE IF NOT EXISTS `modules` (
   `module_id` bigint(10) unsigned NOT NULL,
@@ -36,20 +36,20 @@ CREATE TABLE IF NOT EXISTS `modules` (
   `start_time` time NOT NULL,
   PRIMARY KEY (`module_id`),
   KEY `study_id` (`study_id`,`question_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+) ;
 
 CREATE TABLE IF NOT EXISTS `rank` (
   `study_id` bigint(10) unsigned NOT NULL,
   `rank_array` tinytext NOT NULL,
   PRIMARY KEY (`study_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+) ;
 
 CREATE TABLE IF NOT EXISTS `robot_link` (
   `user_id` bigint(10) unsigned NOT NULL,
   `robot_rank` int(10) unsigned NOT NULL,
   `user_rank` int(10) unsigned NOT NULL,
   PRIMARY KEY (`user_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+) ;
 
 CREATE TABLE IF NOT EXISTS `study` (
   `study_id` bigint(10) unsigned NOT NULL AUTO_INCREMENT,
@@ -57,11 +57,17 @@ CREATE TABLE IF NOT EXISTS `study` (
   `treatment_group` enum('select','no-select','') NOT NULL DEFAULT '',
   `participants` tinytext NOT NULL,
   PRIMARY KEY (`study_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) AUTO_INCREMENT=1 ;
 
 CREATE TABLE IF NOT EXISTS `team_link` (
   `team_id` bigint(10) unsigned NOT NULL AUTO_INCREMENT,
   `user_1` int(10) unsigned NOT NULL,
   `user_2` int(10) unsigned NOT NULL,
   PRIMARY KEY (`team_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) AUTO_INCREMENT=1 ;
+CREATE TABLE IF NOT EXISTS `randomnumbers` (
+  `id` int(15) unsigned NOT NULL AUTO_INCREMENT,
+  `first` smallint(1) unsigned NOT NULL,
+  `second` smallint(3) unsigned NOT NULL,
+  PRIMARY KEY (`id`)
+);

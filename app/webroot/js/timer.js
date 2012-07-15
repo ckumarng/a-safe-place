@@ -15,7 +15,9 @@ var TotalSeconds;
 var Seconds;
 var PSeconds = "00" ;
 var Minutes;
-Forward = "http://localhost/nextStudy";
+
+Forward = "/nextStudy";
+
 function CreateTimer(TimerID, Time, ForwardTo ) {
         Forward = ForwardTo;
 

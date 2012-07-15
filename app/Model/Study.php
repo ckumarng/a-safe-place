@@ -1,7 +1,12 @@
 <?php
 class Study extends AppModel {
+
+var $hasMany = array( 'Randoms' => 'RandomNumber',    );
+
+
 function Study(){
-    
+
+
 }
 //    function Study(){
 //        $id = d;
