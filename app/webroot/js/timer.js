@@ -14,8 +14,12 @@ var Timer;
 var TotalSeconds;
 var Seconds;
 var PSeconds = "00" ;
+<<<<<<< HEAD
 var Minutes;
 Forward = "http://localhost/nextStudy";
+=======
+Forward = "/nextStudy";
+>>>>>>> simple
 function CreateTimer(TimerID, Time, ForwardTo ) {
         Forward = ForwardTo;
 
