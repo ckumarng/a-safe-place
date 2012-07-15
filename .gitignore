@@ -1,29 +1,21 @@
-/nbproject/project.properties
-/nbproject/project.xml
-/phpcake/app/Controller/AppController.php~
-/phpcake/app/View/Posts/add.ctp
-/phpcake/app/View/Posts/delete.ctp
-/phpcake/app/View/Posts/edit.ctp
-/phpcake/app/View/Posts/index.ctp
-/phpcake/app/View/Posts/view.ctp
-/phpcake/app/View/Users/login.ctp
-/phpcake/app/webroot/js/jquery.js~
-/phpcake/app/webroot/js/timer.js~
 .svn
 .settings
 .buildpath
 .project
-php_erros.log
 *.log
-/nbproject/private/
-app/tmp/cache/persistent/myapp_cake_core_default_en-us
+/nbproject/*
+app/tmp/*
 
-app/tmp/cache/persistent/myapp_cake_core_study_en-us
+app/tmp/cache/models/myapp_cake_model_default_pretty_cake_logins
 
-app/tmp/cache/persistent/myapp_cake_core_file_map
+app/tmp/cache/models/myapp_cake_model_default_pretty_cake_random_numbers
 
+<<<<<<< HEAD
 app/tmp/cache/persistent/myapp_cake_core_cake_dev_en-us
 
 app/tmp/cache/cake_toolbar_cache6f2add6af66df858c4399976405f13fb
 
 app/tmp/cache/persistent/myapp_cake_core_debug_kit_en-us
+=======
+app/tmp/cache/persistent/myapp_cake_core_cake_en-us
+>>>>>>> new
