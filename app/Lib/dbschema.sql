@@ -65,9 +65,16 @@ CREATE TABLE IF NOT EXISTS `team_link` (
   `user_2` int(10) unsigned NOT NULL,
   PRIMARY KEY (`team_id`)
 ) AUTO_INCREMENT=1 ;
-CREATE TABLE IF NOT EXISTS `randomnumbers` (
+CREATE TABLE IF NOT EXISTS `random_numbers` (
   `id` int(15) unsigned NOT NULL AUTO_INCREMENT,
   `first` smallint(1) unsigned NOT NULL,
   `second` smallint(3) unsigned NOT NULL,
   PRIMARY KEY (`id`)
+);
+CREATE TABLE IF NOT EXISTS `logins` (
+  `id` varchar(254) NOT NULL,
+  `first_name` varchar(254) NOT NULL,
+  `last_name` varchar(254) NOT NULL,
+  `email` varchar(254) NOT NULL,
+  KEY `id` (`id`)
 );

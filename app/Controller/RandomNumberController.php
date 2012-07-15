@@ -1,7 +1,9 @@
 <?php
-class RandomnumberController extends AppController {
+class RandomNumberController extends AppController {
     var $scaffold;
-
+    function reset(){
+        $this->RandomNumber->reset();
+    }
 
 }
 ?>
