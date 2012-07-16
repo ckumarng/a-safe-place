@@ -1,17 +1,26 @@
 <?php
 class StudyController extends AppController {
+
     var $name = 'Study';
     var $helpers = array('Html', 'Form','Session');
-    //public $timeTaken = 0;
-//    function StudyController(){
-//       //
-//    }
-    //var $uses = array('Timetaken');
     var $timetaken = 0;
-	public function index(){
-            //$this->Study->connector();
+    var $questionID = 0;
+
+    // Load the random number module:
+
+    function beforeFilter(){
+        parent::beforeFilter();
+        $this->loadModel('RandomNumber');
+        $this->questionArray = $this->RandomNumber->find('all',
+		array('order' => 'RandomNumber.id ASC'));
+    }
+
+
+
+    public function index(){
+           //$this->Study->connector();
             //$this->RandomNumbers->reset();
-            debug($this->data);
+         debug($this->data);
 
           //  if ( ! $this->Session->check('pid'))
            //     $this->redirect ('/study/login');
@@ -54,6 +63,7 @@ class StudyController extends AppController {
 
 
         }
+
         function admin(){
 
         }
@@ -66,93 +76,90 @@ class StudyController extends AppController {
 	      login page.
 	    * Check to see if the timer is already running; if not, initialize
 	      it in the session.
+	    * Check to see if the question has been answered: if so, note the
+	      answer and move on.
+
 	*/
+
         function firstStudy( $user_id = 0, 
 			     $minutes = 2, 
 			     $nextPage = 'http://localhost:8080/nextSection' 
         ){
+	   // Check to see if the user has logged in:
            // if ( ! $this->Session->check('pid'))
            //     $this->redirect ('/study/login');
 
-           $seconds = 60 * $minutes;
 
-           //$seconds = 15;
-
-           // print_r($this->data);
-
-           $currentTime = time();
+ 	   // Initialize the timer:
+           $seconds = 60 * $minutes;  // Total # of seconds allowed
+           $currentTime = time();     // The current time
 
            if ( ! $this->Session->check('doneTime')) {
                 $this->Session->write ('doneTime', $currentTime + $seconds);
            }
 
+           // Initialize the question ID, if necessary:
+           if ( ! $this->Session->check('questionID')) {
+	       $this->Session->write ('questionID', 0);
+           }
+
+           // REMOVE THIS:
+           if ($this->Session->read('questionID') >= count($this->questionArray)){
+	       $this->Session->write ('questionID', 0);
+	       $this->Session->write ('completed', 1);
+           }
+
+	   // If a reset command is issued: where can this be done from?
            if( isset($this->data['reset']) )
                 $this->Session->write ('doneTime', $currentTime + $seconds);
 
+	   // Check to see if time is already expired:
+           $timedone = $this->Session->read('doneTime');
 
-            $timedone = $this->Session->read('doneTime');
-
-            if ($timedone  - $currentTime < 0  ){
-
+	   // If $timedone is stale, renew it:
+           if ($timedone  - $currentTime < 0  ){
                 $this->Session->write ('doneTime', $currentTime + $seconds);
-            }
+           }
 
+	   // Update timer:
+           $timeleft = $timedone - $currentTime;
+            
+	   // Check to see if the user has answered a question:
+           if (array_key_exists("Q1", $this->data) && isset($this->data['Q1'])) {
+	       $correct = 0;
+               $timeTaken = $currentTime - (int) $this->data['Q1']['time'];
+               $realAnswer = (int)$this->data['Q1']['answer'];
 
-            if ( isset($this->data['Q1'])  )
-                $timeTaken = $currentTime - (int) $this->data['Q1']['time'];
-            else $timeTaken = 0;
+               if ( $realAnswer == (int)$this->data['Q1']['first'] * 
+			        (int)$this->data['Q1']['second'] )
+                   $correct = 1;
+               // Save answer inforamation to the model:
+               $this->loadModel("Answer");
+               $toSave = array ( "Answer" => 
+                                array ( 
+                                          "module_id" => -1,
+                                          "question_id" => $this->Session->read('questionID') - 1,
+                                          "time_taken" => $timeTaken,
+                                          "correct" => $correct
+			              )
+			       );
+    	       $this->Answer->save($toSave);
+           }
 
+           // Get the next pair of random numbers:
+           $qid = $this->Session->read('questionID');
+           $firstnum = $this->questionArray[$qid]["RandomNumber"]["first"];
+           $secondnum = $this->questionArray[$qid]["RandomNumber"]["second"];
 
-           // echo $timedone;
-          // echo TIME_START.':';
-
-
-            //echo 'Session_ID=';
-            //print_r($timedone);
-           // print_r($_SESSION);
-            //echo debug($this->data);
-            //$this->data['timeTaken'] = time() - (int) $this->data['Q1']['time'];
-            //$timeNow = time();
-            //$timeSent = $this->data['Q1']['time'];
-            //echo $this->data['timeTaken'];
-            //echo $this->Study->id;
-            if ($this->request->is('get')) {
-
-            }
-
-            $timeleft = $timedone - $currentTime;
-            $firstnum = rand(1, 9);
-            $secondnum = rand(21, 99);
-
-
-            //echo "\n is correct?".$correct;
-
-            //print_r($this->data['Q1'][$firstnum.' * '.$secondnum.' =']);
-            //print_r($this->data['Q1']['answer']);
-
-
-            if (isset($this->data['Q1'])) {
-
-                $correct = (int)$this->data['Q1']['first']*(int)$this->data['Q1']['second'];
-
-
-               echo $correct.':'.(int)$this->data['Q1']['answer'];
-
-           if ( $correct == (int)$this->data['Q1']['answer'] )
-            echo "\n CORRECT!";
-            }
-
-            $data = array(
+           // Send updated data to the view
+           $data = array(
                 'firstnum' => $firstnum,
                 'secondnum' => $secondnum,
                 'nextPage' => $nextPage,
                 'timeleft' => $timeleft
-            );
-            $this->set($data);
-
-
-
-
+           );
+           $this->set($data);
+           $this->Session->write('questionID', $qid + 1);
         }
 }
 ?>

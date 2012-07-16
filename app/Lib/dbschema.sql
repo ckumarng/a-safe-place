@@ -17,11 +17,12 @@ CREATE TABLE IF NOT EXISTS `survey` (
 ) ;
 
 CREATE TABLE IF NOT EXISTS `answers` (
+  `id` bigint(10) unsigned NOT NULL AUTO_INCREMENT,
   `module_id` bigint(10) unsigned NOT NULL,
-  `series` int(10) unsigned NOT NULL,
+  `question_id` int(10) unsigned NOT NULL,
   `time_taken` time NOT NULL,
-  `correct` bit(1) NOT NULL,
-  PRIMARY KEY (`module_id`)
+  `correct` smallint NOT NULL,
+  PRIMARY KEY (`id`)
 ) ;
 
 CREATE TABLE IF NOT EXISTS `modules` (
