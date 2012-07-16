@@ -4,6 +4,7 @@ class TrafficController extends AppController {
     public $helpers = array('Session');
 	public function index() {
             $this->Session->delete('doneTime');
+            
             $nextActivity = (int) $this->Session->read('activity') + 1;
             //$nextActivity = 1;
 

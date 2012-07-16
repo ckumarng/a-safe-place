@@ -1,10 +1,11 @@
 <?php
-class StudyController extends AppController {
+class ModuleController extends AppController {
 
-    var $name = 'Study';
+    var $name = 'Module';
     var $helpers = array('Html', 'Form','Session');
     var $timetaken = 0;
     var $questionID = 0;
+    var $scaffold;
 
     // Load the random number module:
 
@@ -19,13 +20,13 @@ class StudyController extends AppController {
         $this->LoginCheck();
 
     }
-    public function index(){
-
-           //$this->Study->connector();
-            //$this->RandomNumbers->reset();
-         debug($this->data);
-
-	}
+//    public function index(){
+//
+//           //$this->Study->connector();
+//            //$this->RandomNumbers->reset();
+//         debug($this->data);
+//
+//	}
 	/*
 	 firstStudy - This function handles moving the user through a series
 		      of questions, tracking the time taken and progress.
@@ -55,7 +56,7 @@ class StudyController extends AppController {
 
            // Initialize the question ID, if necessary:
            if ( ! $this->Session->check('questionID')) {
-	       $this->Session->write ('questionID', 0);
+	       $this->Session->write ('questionID', 1);
            }
 
            // REMOVE THIS:

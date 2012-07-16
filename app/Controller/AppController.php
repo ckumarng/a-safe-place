@@ -41,6 +41,9 @@ class AppController extends Controller {
        // 2 => '/study/secondStudy',
         2 => '/final'
     );
+    public $password = 'simple123';
+    #---------------------------------------------------------------------------
+    # End option need for database
     public function LoginCheck(){
         if ( ! $this->Session->check('pid') )
             $this->redirect ('/login');
