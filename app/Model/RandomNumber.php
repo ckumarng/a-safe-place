@@ -13,7 +13,7 @@ class RandomNumber extends AppModel {
         debug('You found me!');
             for( $i = 0; $i < $numberOfTables; $i++ ) {
                 echo '.';
-                $firstnum = rand(1, 9);
+                $firstnum = rand(2, 9);
                 $secondnum = rand(21, 99);
 
                 $this->save(array (
