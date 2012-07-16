@@ -25,7 +25,7 @@ class LoginController extends AppController {
                     //}
 
                  //if (  $this->Session->check('pid'))
-                    $this->redirect ('/NextSection');
+                    $this->redirect ('/traffic');
 
 
                 }
@@ -35,7 +35,6 @@ class LoginController extends AppController {
         public function login(){
                         if($this->request->is('post')){
  //print_r($this->data);
-
 
                 if( $this->data['Login']['ID'] != '' ){
                     //$this->Session->activate();
@@ -52,7 +51,7 @@ class LoginController extends AppController {
                     }
 
                  //if (  $this->Session->check('pid'))
-                    $this->redirect ('/study/firstStudy');
+                    $this->redirect ('/traffic');
 
 
                 }

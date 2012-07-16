@@ -1,6 +1,6 @@
 <?php
 
-class NextSectionController extends AppController {
+class TrafficController extends AppController {
     public $helpers = array('Session');
 	public function index() {
             $this->Session->delete('doneTime');
@@ -15,12 +15,10 @@ class NextSectionController extends AppController {
            // echo $this->activity_order[$nextActivity];
 
             $this->redirect($this->activity_order[$nextActivity]);
+            } else {
+                $this->Session->write('activity', 0 );
+                $this->redirect('/login');
             }
- else {
-     $this->Session->write('activity', 0 );
-     $this->redirect('/login');
-
-     }
 
 	}
 }

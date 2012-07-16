@@ -8,14 +8,19 @@ class StudyController extends AppController {
 
     // Load the random number module:
 
-//    function beforeFilter(){
+   // function beforeFilter(){
 //        parent::beforeFilter();
 //        $this->loadModel('RandomNumber');
 //        $this->questionArray = $this->RandomNumber->find('all',
 //		array('order' => 'RandomNumber.id ASC'));
-//    }
+        //$this->LoginCheck();
+   // }
+    function beforeFilter(){
+        $this->LoginCheck();
 
+    }
     public function index(){
+
            //$this->Study->connector();
             //$this->RandomNumbers->reset();
          debug($this->data);
@@ -33,14 +38,9 @@ class StudyController extends AppController {
 	      answer and move on.
 
 	*/
-        function firstStudy( $user_id = 0,
-			     $minutes = 2,
-			     $nextPage = 'http://localhost:8080/nextSection'
+        function firstStudy( $minutes = 2,
+			     $nextPage = '/traffic'
         ){
-	   // Check to see if the user has logged in:
-           // if ( ! $this->Session->check('pid'))
-           //     $this->redirect ('/study/login');
-
             //Load random number module
             $this->loadModel('RandomNumber');
 

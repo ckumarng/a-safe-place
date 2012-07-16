@@ -41,7 +41,10 @@ class AppController extends Controller {
        // 2 => '/study/secondStudy',
         2 => '/final'
     );
-
+    public function LoginCheck(){
+        if ( ! $this->Session->check('pid') )
+            $this->redirect ('/login');
+    }
 
 //public $components = array('DebugKit.Toolbar');
 }
