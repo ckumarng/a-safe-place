@@ -12,7 +12,7 @@ else $timeTaken = 0;
 echo $this->Html->script('timer');
 echo $this->Form->create('Q1');
 
-//debug($this->data);
+debug($this->data);
 ?>
 <!--<style>
 .grdhdr {background-color:#CCBB99;  font-family:'times new roman', proportional;

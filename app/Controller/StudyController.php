@@ -67,12 +67,16 @@ class StudyController extends AppController {
 	    * Check to see if the timer is already running; if not, initialize
 	      it in the session.
 	*/
-        function firstStudy( $user_id = 0, 
-			     $minutes = 2, 
-			     $nextPage = 'http://localhost:8080/nextSection' 
+        function firstStudy( $user_id = 0,
+			     $minutes = 2,
+			     $nextPage = 'http://localhost:8080/nextSection'
         ){
            // if ( ! $this->Session->check('pid'))
            //     $this->redirect ('/study/login');
+
+            $this->loadModel('RandomNumber');
+            //print_r($this->data);
+           // debug($this->data);
 
            $seconds = 60 * $minutes;
 
@@ -86,8 +90,10 @@ class StudyController extends AppController {
                 $this->Session->write ('doneTime', $currentTime + $seconds);
            }
 
-           if( isset($this->data['reset']) )
+           if( isset($this->data['reset']) ) {
                 $this->Session->write ('doneTime', $currentTime + $seconds);
+                $this->Session->write('questionSeries',0);
+           }
 
 
             $timedone = $this->Session->read('doneTime');
@@ -121,8 +127,8 @@ class StudyController extends AppController {
             }
 
             $timeleft = $timedone - $currentTime;
-            $firstnum = rand(1, 9);
-            $secondnum = rand(21, 99);
+            //$firstnum = rand(1, 9);
+            //$secondnum = rand(21, 99);
 
 
             //echo "\n is correct?".$correct;
@@ -142,13 +148,29 @@ class StudyController extends AppController {
             echo "\n CORRECT!";
             }
 
+
+            if( $this->Session->check('questionSeries') )
+                $i = $this->Session->read('questionSeries') + 1;
+            else
+                $i = 1;
+
+            $this->Session->write('questionSeries',$i);
+
+
+            $numbers = $this->RandomNumber->find('first', array('conditions' =>  array('RandomNumber.id' => $i)));
+
+
             $data = array(
-                'firstnum' => $firstnum,
-                'secondnum' => $secondnum,
+                'firstnum' => $numbers['RandomNumber']['first'],
+                'secondnum' => $numbers['RandomNumber']['second'],
                 'nextPage' => $nextPage,
                 'timeleft' => $timeleft
             );
             $this->set($data);
+
+
+
+            //debug($numbers['RandomNumber']['first']);
 
 
 
