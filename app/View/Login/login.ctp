@@ -1,11 +1,13 @@
 
 <div class="users form">
-<?php //echo $this->Session->flash('bl'); ?>
+<?php //echo $this->Session->flash('bl');
+   // $helper = array('Session');
+?>
 <?php echo $this->Form->create('Login'); ?>
     <fieldset>
         <legend><?php echo __('Please enter your email and password'); ?></legend>
     <?php
-        echo $this->Form->input('ID');
+        echo $this->Form->input('ID', array('value' => $this->Session->read('pid')));
         echo $this->Form->input('password');
     ?>
     </fieldset>

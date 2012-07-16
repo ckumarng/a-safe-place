@@ -32,5 +32,16 @@ App::uses('Controller', 'Controller');
  * @link http://book.cakephp.org/2.0/en/controllers.html#the-app-controller
  */
 class AppController extends Controller {
-//	public $components = array('DebugKit.Toolbar');
+    /**
+     * for now this is the order of the study
+     * @todo make this a database option to be editable on the web
+     */
+    public $activity_order = array(
+        1 => '/study/firstStudy',
+       // 2 => '/study/secondStudy',
+        2 => '/final'
+    );
+
+
+//public $components = array('DebugKit.Toolbar');
 }
