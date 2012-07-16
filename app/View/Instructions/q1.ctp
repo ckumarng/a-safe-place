@@ -53,7 +53,7 @@ class="ecrm-1200">July 12, 2012</span></div>
 
 experiment you can earn money by receiving points. The number of points that you
 
-receive during the experiment depends on your decisions. All points that
+receive during the experiment depends on your decisions. All points that ()
 
 you earn in the experiment will be exchanged into dollars at the end of the
 
