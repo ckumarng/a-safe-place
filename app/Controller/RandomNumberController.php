@@ -4,6 +4,5 @@ class RandomNumberController extends AppController {
     function reset(){
         $this->RandomNumber->reset();
     }
-
 }
 ?>

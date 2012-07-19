@@ -35,6 +35,7 @@ class AppController extends Controller {
     /**
      * for now this is the order of the study
      * @todo make this a database option to be editable on the web
+     * @todo create environment/admin database table
      */
     public $activity_order = array(
         1 => '/study/firstStudy',

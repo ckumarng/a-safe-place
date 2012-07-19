@@ -1,37 +1,13 @@
 <?php
-
-//echo time_elapsed( $timeNow - $timeSent );
-//echo $this->Html->script('jquery');
-/*
-if ( isset($this->data['Q1'])  )
-    $timeTaken = time() - (int) $this->data['Q1']['time'];
-else $timeTaken = 0;
-*/
-
-
 echo $this->Html->script('timer');
 echo $this->Form->create('Q1');
 
 //debug($this->data);
 ?>
-<!--<style>
-.grdhdr {background-color:#CCBB99;  font-family:'times new roman', proportional;
-  font-weight:normal; font-size:18px; text-align:center; color:#502020 }
-.grdbdy {background-color:#E8E0BB;  font-family:'times new roman', proportional;
-  font-weight:normal; font-size:18px; text-align:center; color:#480E32 }
-</style>-->
-
-
-<!--<button onclick="myFunction()">Start time</button>-->
-
-
-<!--<div id='timer' > </div>-->
-
-
-
 
 <div id="question-block" style="width:500px;margin-left:auto;margin-right:auto;"><div style="float:right;">
 <p id="timer"></p></div>
+<?php //this is the old grid view. to keep or not to keep? ?>
 <!--<table cellspacing=2 cellpadding=5 border=1 style="background-color:#857B7B;">-->
 <!-- row 0   -->
 <!-- <tr><td class="grdhdr">test0
@@ -65,35 +41,7 @@ echo $this->Form->create('Q1');
 <!--</table>-->
 
 
-<?php  echo $this->Form->input('answer',array('type'=>'textbox','label'=>$firstnum.' * '.$secondnum.' =','value'=>'' )); ?>
-
-
-
-
-
-<?php
-$js = 'function myFunction()
-{
-setInterval(function(){myTimer()},1000);
-}
-
-function myTimer()
-{
-var d=new Date();
-var t=d.toLocaleTimeString();
-document.getElementById("timer").innerHTML=t;
-}';
-
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-//$this->Html->scriptStart();
-//echo $this->Js->codeBlock($js);
-//$this->Html->scriptEnd();
-//echo $this->Html->para('',array('id'=>'timer'));
-//echo $this->Html->div('timer-container');
-
+<?php  echo $this->Form->input('answer',array('type'=>'textbox','label'=>$firstnum.' * '.$secondnum.' =','value'=>'' ));
 
 echo $this->Form->input('time', array('type' => 'hidden', 'value'=> time()));
 echo $this->Form->input('first', array('type' => 'hidden', 'value'=> $firstnum));
@@ -105,7 +53,5 @@ echo $this->Form->input('time', array('type' => 'hidden', 'value'=> 'reset'));
 echo $this->Form->end('reset');
 ?>
 </div>
-
-
 
 <script type="text/javascript">window.onload = CreateTimer("timer",<?php echo $timeleft ?>,"<?php echo $nextPage ?>");</script>

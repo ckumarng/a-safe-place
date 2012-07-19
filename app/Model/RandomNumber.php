@@ -7,21 +7,20 @@ class RandomNumber extends AppModel {
    // var $hasMany = array( 'MyRecipe' => array('className'  => 'RandomNumber'  )  );
    // var $hasAndBelongsToMany = array('MemberOf' => 'Study');
 
-
     public function fill_table( $numberOfTables = 100 ){
-            for( $i = 0; $i <= $numberOfTables; $i++ ) {
-                $firstnum = rand(2, 9);
-                $secondnum = rand(21, 99);
+        for( $i = 0; $i <= $numberOfTables; $i++ ) {
+            $firstnum = rand(2, 9);
+            $secondnum = rand(21, 99);
 
-                $this->save(array (
-                    'RandomNumber' => array (
-                        'id' => $i,
-                        'first' => $firstnum,
-                        'second' => $secondnum
-                        )
+            $this->save(array (
+                'RandomNumber' => array (
+                    'id' => $i,
+                    'first' => $firstnum,
+                    'second' => $secondnum
                     )
-                );
-            }
+                )
+            );
+        }
     }
     public function truncate(){
         $this->query('TRUNCATE table random_numbers;');
