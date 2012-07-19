@@ -24,7 +24,7 @@ CREATE TABLE IF NOT EXISTS `answers` (
   `time_taken` time NOT NULL,
   `correct` smallint NOT NULL,
   PRIMARY KEY (`id`)
-) ;
+) ENGINE=InnoDB;
 --updated: 7/19/2012 4:50
 CREATE TABLE IF NOT EXISTS `modules` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
