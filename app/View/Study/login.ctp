@@ -11,3 +11,4 @@
     </fieldset>
 <?php echo $this->Form->end(__('Login') ); ?>
 </div>
+<?php echo 'the password is:' ; ?>

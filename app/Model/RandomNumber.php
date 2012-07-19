@@ -29,5 +29,18 @@ class RandomNumber extends AppModel {
         $this->truncate();
         $this->fill_table( $numberOfTables );
     }
+    public function getNumbers( $qid ){
+        // Only get what we need
+       return $this->find('first', array(
+                        'conditions' =>  array(
+                            'RandomNumber.id' => $qid
+                            ),
+                        'fields' => array(
+                            'RandomNumber.first',
+                            'RandomNumber.second'
+                            )
+                        )
+                    );
+    }
 }
 ?>

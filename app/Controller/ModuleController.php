@@ -7,10 +7,34 @@ class ModuleController extends AppController {
     var $questionID = 0;
     var $scaffold;
 
-    // Load the random number module:
+    /*
+     * always check if they are logged in
+     */
     function beforeFilter(){
         $this->LoginCheck();
 
+    }
+    /*
+     * makes sure the user is on the correct activity
+     */
+    private function  activityCheck() {
+
+    }
+    /*
+     * creates a new activity in the database
+     */
+    function newActivity(){
+        $activity = array (
+            'module' => $this->Session->read('activity'),
+            'user' => $this->Session->read('pid'),
+            'study' => $this->StudyNumber,
+            'question' => 2
+        );
+        //echo 'this';
+       // print_r ( $this->Module->newModule( $activity ) );
+        $this->Session->write('qid',$this->Module->newModule( $activity ));
+
+       //$this->redirect( array('controller' => 'Module') );
     }
 //    public function index(){
 //
@@ -20,20 +44,24 @@ class ModuleController extends AppController {
 //
 //	}
     /*
-        firstStudy - This function handles moving the user through a series
-                    of questions, tracking the time taken and progress.
-                    The following general logic is implemented here:
-        * Check to see if the user is logged in; if not, redirect to
-            login page.
-        * Check to see if the timer is already running; if not, initialize
-            it in the session.
-        * Check to see if the question has been answered: if so, note the
-            answer and move on.
-
-    */
+     *   firstStudy - This function handles moving the user through a series
+     *               of questions, tracking the time taken and progress.
+     *               The following general logic is implemented here:
+     *   * Check to see if the user is logged in; if not, redirect to
+     *       login page.
+     *   * Check to see if the timer is already running; if not, initialize
+     *       it in the session.
+     *   * Check to see if the question has been answered: if so, note the
+     *
+     *   answer and move on.
+     */
     function firstStudy( $minutes = 2,
                             $nextPage = '/traffic'
     ){
+
+        if( ! $this->Session->check('qid') )
+            $this->newActivity();
+
         //Load random number module
         $this->loadModel('RandomNumber');
 
@@ -94,11 +122,11 @@ class ModuleController extends AppController {
             $this->loadModel('Answer');
             $toSave = array ( 'Answer' =>
                             array (
-                                        'module_id' => -1,
-                                        'question_id' => $qid,
-                                        'time_taken' => $timeTaken,
-                                        'correct' => $correct
-                                    )
+                                    'module_id' => $this->Session->read('qid'),
+                                    'question_id' => $qid,
+                                    'time_taken' => $timeTaken,
+                                    'correct' => $correct
+                                )
                             );
             $this->Answer->save($toSave);
 
@@ -106,8 +134,8 @@ class ModuleController extends AppController {
             $this->Session->write('questionID', $qid);
         }
 
-        // Only get what we need
-        $numbers = $this->RandomNumber->find('first', array('conditions' =>  array('RandomNumber.id' => $qid)));
+        // get our two numbers
+        $numbers = $this->RandomNumber->getNumbers( $qid );
 
         // Send updated data to the view
         $data = array(

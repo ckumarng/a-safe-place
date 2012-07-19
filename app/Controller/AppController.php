@@ -38,16 +38,17 @@ class AppController extends Controller {
      * @todo create environment/admin database table
      */
     public $activity_order = array(
-        1 => '/study/firstStudy',
+        1 => 'firstStudy',
        // 2 => '/study/secondStudy',
-        2 => '/final'
     );
     public $password = 'simple123';
+    public $StudyNumber = 1;
     #---------------------------------------------------------------------------
     # End option need for database
     public function LoginCheck(){
         if ( ! $this->Session->check('pid') )
-            $this->redirect ('/login');
+            $this->redirect ( array( 'controller' => 'login' ) );
+
     }
 
 //public $components = array('DebugKit.Toolbar');
