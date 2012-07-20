@@ -5,9 +5,20 @@
  * and open the template in the editor.
  */
 class InstructionsController extends AppController {
+    var $helpers = array('Form','Html');
+    public function beforeFilter() {
+       // debug($data);
+        if( $this->request->is( 'post' ) ) {
+            $this->Session->write('SeenIt',true);
+            $this->redirect( array('controller' => 'Traffic') );
+        }
+
+    }
     public function index() {
+
     }
     public function q1(){
+        debug($data);
     }
     public function s1(){
     }

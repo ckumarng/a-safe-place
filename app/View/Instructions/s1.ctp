@@ -4,11 +4,11 @@
 
 Multiplication Task, you will try to solve correctly as many multiplication problems
 
-                                                                  
 
 
 
-                                                                  
+
+
 
 as possible within two and a half minutes.
 
@@ -21,3 +21,7 @@ questions.
 <!--l. 73--><p class="indent" >   Your score will be number of problems you solved corectly within this time
 
 limit.
+
+<?php echo $this->Form->create( 'Submit' );
+ echo $this->Form->end( __( 'Continue' ) );
+?>

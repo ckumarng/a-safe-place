@@ -38,7 +38,7 @@ class AppController extends Controller {
      * @todo create environment/admin database table
      */
     public $activity_order = array(
-        1 => 'firstStudy',
+        1 => 'firstStudy'
        // 2 => '/study/secondStudy',
     );
     public $password = 'simple123';

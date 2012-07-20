@@ -13,12 +13,24 @@ class ModuleController extends AppController {
     function beforeFilter(){
         $this->LoginCheck();
 
+        if ( ! $this->seenInstructions() )
+            $this->redirect ( array('controller' => 'Instructions', 'action' => 's'.$this->Session->read( 'activity' ) ) );
+
+    }
+    private function seenInstructions(){
+        if ( $this->Session->check('SeenIt') )
+            return true;
+        else
+            return false;
     }
     /*
      * makes sure the user is on the correct activity
      */
-    private function  activityCheck() {
-
+    private function  activityCheck( $currentActivity ) {
+        if ( $currentActivity == $this->Session->read( 'activity' ) )
+            return true;
+        else
+            return false;
     }
     /*
      * creates a new activity in the database
@@ -145,6 +157,9 @@ class ModuleController extends AppController {
             'timeleft' => $timeleft
         );
         $this->set($data);
+    }
+    public function review(){
+        //get the number correct and the payment for display
     }
 }
 ?>

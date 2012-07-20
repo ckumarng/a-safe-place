@@ -2,36 +2,83 @@
 
 class TrafficController extends AppController {
     public $helpers = array( 'Session' );
+
+
+    function beforeFilter(){
+        $this->LoginCheck();
+
+
+
+    }
+
     public function index() {
         $activity = (int) $this->Session->read( 'activity' );
+
+       if( $activity == -1 )
+        $this->redirect( array('controller' => 'ThankYou') );
         //if (  $activity == 0 )
             //   $activity = 1;
+        if ( $this->Session->check('doneTime') ) {
+            if( $this->Session->read( 'doneTime' ) < time() ) {
 
-        if( (int) $this->Session->read( 'complete' ) == 1 )  {
+                $this->dataProcess();
 
-        $this->Session->delete( 'doneTime' );
-        $this->Session->delete( 'qid' );
+                $this->Session->delete( 'doneTime' );
+                $this->Session->delete( 'qid' );
+                $this->Session->delete( 'questionID' );
+                $this->Session->delete( 'SeenIt' );
 
-            $nextActivity = $activity + 1;
-        } else {
-            $this->redirect( array(
-                                'controller' => 'module',
-                                'action' => $this->activity_order[$activity]
-                                )
-                            );
+                $activity = $activity + 1;
+                $this->Session->write( 'activity', $activity );
+            }
+
         }
 
         //$nextActivity = 1;
 
         // $this->Session->write('activity', $nextActivity );
 
-        if ( $nextActivity <= count( $this->activity_order ) ){
-            $this->Session->write( 'activity', $nextActivity );
-            $this->redirect( $this->activity_order[$nextActivity] );
+       // echo $this->activity_order[$activity];
+
+        if ( $activity <= count( $this->activity_order ) ){
+            $this->redirect( array(
+                                'controller' => 'Module',
+                                'action' => $this->activity_order[$activity]
+                            )
+                    );
         } else {
             $this->Session->write( 'activity', -1 );
-            $this->redirect( array('controller' => 'login') );
+            $this->redirect( array('controller' => 'ThankYou') );
         }
+
+    }
+    private function dataProcess( $activityNumber = -1 ){
+        if ( $activityNumber == -1 )
+            $activityNumber = $this->Session->read( 'activity' );
+
+        switch ( $activityNumber ) {
+            case -1:
+                return false;
+                break;
+            case 1:
+                return $this->firstStudyProcessor();
+                break;
+            default :
+                return false;
+                break;
+        }
+    }
+    private function firstStudyProcessor(){
+        $this->loadModel('Module');
+
+        $this->Module->id = $this->Session->read('qid');
+
+        $this->Module->save( array(
+            'correct' => $this->Session->read('questionID') - 1,
+            'completed' => 1,
+            'payment' => 0
+        ));
+        return true;
     }
 }
 ?>
