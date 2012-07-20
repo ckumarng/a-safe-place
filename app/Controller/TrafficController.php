@@ -16,6 +16,10 @@ class TrafficController extends AppController {
 
        if( $activity == -1 )
         $this->redirect( array('controller' => 'ThankYou') );
+
+        if ( ! $this->seenInstructions() )
+            $this->redirect ( array('controller' => 'Instructions', 'action' => 's'.$this->Session->read( 'activity' ) ) );
+
         //if (  $activity == 0 )
             //   $activity = 1;
         if ( $this->Session->check('doneTime') ) {
@@ -48,6 +52,8 @@ class TrafficController extends AppController {
                     );
         } else {
             $this->Session->write( 'activity', -1 );
+            $this->loadModel( 'Login' );
+            $this->Login->setComplete( $this->Session->read( 'pid' ) );
             $this->redirect( array('controller' => 'ThankYou') );
         }
 
@@ -71,14 +77,23 @@ class TrafficController extends AppController {
     private function firstStudyProcessor(){
         $this->loadModel('Module');
 
-        $this->Module->id = $this->Session->read('qid');
-
-        $this->Module->save( array(
+        $this->Module->saveData($this->Session->read('qid'), array(
             'correct' => $this->Session->read('questionID') - 1,
             'completed' => 1,
             'payment' => 0
         ));
         return true;
+    }
+        private function seenInstructions(){
+        if ( $this->Session->check('SeenIt') )
+            return true;
+        else
+            return false;
+    }
+    public function test(){
+        $this->loadModel( 'Login' );
+        print_r($this->Session->read( 'pid' ));
+        print_r($this->Login->setComplete( $this->Session->read( 'pid' ) ));
     }
 }
 ?>

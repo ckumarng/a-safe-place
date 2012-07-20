@@ -8,10 +8,18 @@ class LoginController extends AppController {
             if( $this->data['Login']['ID'] != '' &&
                     $this->data['Login']['password'] == $this->password ) {
 
+                $id = $this->Login->getUserID(trim($this->data['Login']['ID'] ));
+                if( $id ) {
+                    if ( $this->Login->isComplete( $id ) ){
+                        $this->Session->write ( 'activity', -1 );
+                        $this->redirect ( array('controller' => 'Traffic')  );
+                    }
+
                 $this->Session->write( 'pid',trim($this->data['Login']['ID'] ) );
                 if ( ! $this->Session->check( 'activity' ) )
                     $this->Session->write ( 'activity', 1 );
                 $this->redirect ( array('controller' => 'Traffic')  );
+                }
             }
         }
         $this->set( 'login_id',$this->Session->read( 'pid' ) );
@@ -22,5 +30,6 @@ class LoginController extends AppController {
         $this->Session->destroy();
         $this->redirect( array('controller' => 'Login') );
     }
+
 }
 ?>

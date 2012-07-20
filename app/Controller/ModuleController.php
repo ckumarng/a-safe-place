@@ -13,15 +13,9 @@ class ModuleController extends AppController {
     function beforeFilter(){
         $this->LoginCheck();
 
-        if ( ! $this->seenInstructions() )
-            $this->redirect ( array('controller' => 'Instructions', 'action' => 's'.$this->Session->read( 'activity' ) ) );
+        //if ( ! $this->seenInstructions() )
+           // $this->redirect ( array('controller' => 'Instructions', 'action' => 's'.$this->Session->read( 'activity' ) ) );
 
-    }
-    private function seenInstructions(){
-        if ( $this->Session->check('SeenIt') )
-            return true;
-        else
-            return false;
     }
     /*
      * makes sure the user is on the correct activity

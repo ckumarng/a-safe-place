@@ -52,14 +52,14 @@ CREATE TABLE IF NOT EXISTS `robot_link` (
   `user_rank` int(10) unsigned NOT NULL,
   PRIMARY KEY (`user_id`)
 ) ;
--- updated: original
-CREATE TABLE IF NOT EXISTS `study` (
+-- updated: 7/20/2012 1:10pm
+CREATE TABLE IF NOT EXISTS `studies` (
   `study_id` bigint(10) unsigned NOT NULL AUTO_INCREMENT,
-  `date` time NOT NULL,
+  `date` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00' ON UPDATE CURRENT_TIMESTAMP,
   `treatment_group` enum('select','no-select','') NOT NULL DEFAULT '',
   `participants` tinytext NOT NULL,
   PRIMARY KEY (`study_id`)
-) AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB AUTO_INCREMENT=1 ;
 -- updated: original
 CREATE TABLE IF NOT EXISTS `team_link` (
   `team_id` bigint(10) unsigned NOT NULL AUTO_INCREMENT,
@@ -74,11 +74,19 @@ CREATE TABLE IF NOT EXISTS `random_numbers` (
   `second` smallint(3) unsigned NOT NULL,
   PRIMARY KEY (`id`)
 );
--- updated: original
+-- updated: 7/20/2012 1:07pm
 CREATE TABLE IF NOT EXISTS `logins` (
-  `id` varchar(254) NOT NULL,
+  `id` bigint(254) unsigned NOT NULL AUTO_INCREMENT,
   `first_name` varchar(254) NOT NULL,
   `last_name` varchar(254) NOT NULL,
   `email` varchar(254) NOT NULL,
   KEY `id` (`id`)
-);
+) ENGINE=InnoDB AUTO_INCREMENT=100 ;
+-- created: 7/20/2012 1:03pm
+CREATE TABLE IF NOT EXISTS `variables` (
+  `id` bigint(24) unsigned NOT NULL AUTO_INCREMENT,
+  `key` varchar(254) NOT NULL,
+  `value` text NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `key` (`key`)
+) ENGINE=MyISAM AUTO_INCREMENT=1;

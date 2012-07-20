@@ -17,6 +17,38 @@ class Login extends AppModel {
             'message'     => 'Please enter Password'
         )
          );
+    public function getUserID( $userID ){
+        return $this->find('first',array(
+                            'conditions' =>  array(
+                                'Login.id' => (int) $userID
+                            ),
+                            'fields' => array(
+                                'Login.id',
+                            )
+                        )
+                    );
+    }
+    public function setComplete( $userID ){
+        $this->id = (int) $userID;
+        
+        return $this->save( array( 'complete' => 1 ) );
+    }
+    public function isComplete( $userID ){
+        $complete = $this->find('first',array(
+                    'conditions' =>  array(
+                        'Login.id' => (int) $userID
+                    ),
+                    'fields' => array(
+                        'Login.complete',
+                    )
+                )
+            );
+        if ( $complete ){
+            if ( $complete == 1 )
+                return true;
+        }
 
+        return false;
+    }
 }
 ?>

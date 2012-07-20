@@ -23,5 +23,9 @@ class Module extends AppModel {
                     )
                 );
     }
+    public function saveData( $userID, $data ){
+         $this->id = (int) $userID;
+         return $this->save( $data );
+    }
 }
 ?>
