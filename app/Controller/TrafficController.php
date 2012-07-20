@@ -90,10 +90,6 @@ class TrafficController extends AppController {
         else
             return false;
     }
-    public function test(){
-        $this->loadModel( 'Login' );
-        print_r($this->Session->read( 'pid' ));
-        print_r($this->Login->setComplete( $this->Session->read( 'pid' ) ));
-    }
+
 }
 ?>

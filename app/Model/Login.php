@@ -30,7 +30,16 @@ class Login extends AppModel {
     }
     public function setComplete( $userID ){
         $this->id = (int) $userID;
-        
+
+        if(  $this->saveField('complete', 1) )
+            return true;
+        else {
+
+            echo 'something went wrong';
+            return false;
+        }
+
+
         return $this->save( array( 'complete' => 1 ) );
     }
     public function isComplete( $userID ){

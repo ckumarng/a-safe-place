@@ -25,7 +25,7 @@ CREATE TABLE IF NOT EXISTS `answers` (
   `correct` smallint NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB;
--- updated: 7/19/2012 4:50
+-- updated: 7/19/2012 4:50pm
 CREATE TABLE IF NOT EXISTS `modules` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `module` bigint(10) unsigned NOT NULL,
@@ -52,13 +52,13 @@ CREATE TABLE IF NOT EXISTS `robot_link` (
   `user_rank` int(10) unsigned NOT NULL,
   PRIMARY KEY (`user_id`)
 ) ;
--- updated: 7/20/2012 1:10pm
+-- updated: 7/20/2012 4:56pm
 CREATE TABLE IF NOT EXISTS `studies` (
-  `study_id` bigint(10) unsigned NOT NULL AUTO_INCREMENT,
-  `date` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00' ON UPDATE CURRENT_TIMESTAMP,
+  `id` bigint(10) unsigned NOT NULL AUTO_INCREMENT,
+  `date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `treatment_group` enum('select','no-select','') NOT NULL DEFAULT '',
   `participants` tinytext NOT NULL,
-  PRIMARY KEY (`study_id`)
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 ;
 -- updated: original
 CREATE TABLE IF NOT EXISTS `team_link` (
@@ -74,12 +74,13 @@ CREATE TABLE IF NOT EXISTS `random_numbers` (
   `second` smallint(3) unsigned NOT NULL,
   PRIMARY KEY (`id`)
 );
--- updated: 7/20/2012 1:07pm
+-- updated: 7/20/2012 4:56pm
 CREATE TABLE IF NOT EXISTS `logins` (
   `id` bigint(254) unsigned NOT NULL AUTO_INCREMENT,
   `first_name` varchar(254) NOT NULL,
   `last_name` varchar(254) NOT NULL,
   `email` varchar(254) NOT NULL,
+  `complete` tinyint(1) unsigned NOT NULL DEFAULT '0',
   KEY `id` (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=100 ;
 -- created: 7/20/2012 1:03pm

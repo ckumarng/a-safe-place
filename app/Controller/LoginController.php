@@ -30,6 +30,5 @@ class LoginController extends AppController {
         $this->Session->destroy();
         $this->redirect( array('controller' => 'Login') );
     }
-
 }
 ?>

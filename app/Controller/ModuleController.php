@@ -17,6 +17,12 @@ class ModuleController extends AppController {
            // $this->redirect ( array('controller' => 'Instructions', 'action' => 's'.$this->Session->read( 'activity' ) ) );
 
     }
+    private function seenInstructions(){
+        if ( $this->Session->check('SeenIt') )
+            return true;
+        else
+            return false;
+    }
     /*
      * makes sure the user is on the correct activity
      */
@@ -30,10 +36,12 @@ class ModuleController extends AppController {
      * creates a new activity in the database
      */
     function newActivity(){
+        $this->loadModel('Variable');
+        $study = $this->Variable->getVariable( 'currentStudy' );
         $activity = array (
             'module' => $this->Session->read('activity'),
             'user' => $this->Session->read('pid'),
-            'study' => $this->StudyNumber,
+            'study' => $study,
             'question' => 2
         );
         //echo 'this';
