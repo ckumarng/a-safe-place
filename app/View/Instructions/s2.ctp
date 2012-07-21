@@ -13,7 +13,7 @@ better than 35% of the participants in this session, then your percentile rank w
 
 within 25 then you get a prize.
 
-   <h3 class="likesectionHead"><a 
+   <h3 class="likesectionHead"><a
 
  id="x1-1000"></a>Meet the Robots and you Payoff</h3>
 
@@ -67,11 +67,11 @@ team&#8217;s score. We are going to ask you which robot you think you are most l
 
 means which of the 100 Bob clones is as likely as you are to score in the
 
-                                                                  
 
 
 
-                                                                  
+
+
 
 top quartile. We will randomly choose one of these decisions that you have
 
@@ -99,6 +99,10 @@ you X% chance of scoring in the top quarter. You are more likely to win $3 if yo
 
 as accurate as possible.
 
-<!--l. 134--><p class="indent" >   <span 
+<!--l. 134--><p class="indent" >   <span
 
 class="ecbx-1000">I am likely to score in the top quartile as Bob ......</span>
+
+<?php echo $this->Form->create( 'Submit' );
+ echo $this->Form->end( __( 'Continue' ) );
+?>

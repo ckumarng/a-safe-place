@@ -13,8 +13,8 @@ class ModuleController extends AppController {
     function beforeFilter(){
         $this->LoginCheck();
 
-        //if ( ! $this->seenInstructions() )
-           // $this->redirect ( array('controller' => 'Instructions', 'action' => 's'.$this->Session->read( 'activity' ) ) );
+        if ( ! $this->seenInstructions() )
+            $this->redirect ( array('controller' => 'Instructions', 'action' => 's'.$this->Session->read( 'activity' ) ) );
 
     }
     private function seenInstructions(){
@@ -58,7 +58,7 @@ class ModuleController extends AppController {
 //
 //	}
     /*
-     *   firstStudy - Initiate the second study (first checking to see if the 
+     *   firstStudy - Initiate the second study (first checking to see if the
      *     user is logged in; if not, redirect to login page).
      */
     function firstStudy( $minutes = 2,
@@ -73,7 +73,7 @@ class ModuleController extends AppController {
     }
 
     /*
-     *   secondStudy - Initiate the second study (first checking to see if the 
+     *   secondStudy - Initiate the second study (first checking to see if the
      *     user is logged in; if not, redirect to login page).
      */
     function secondStudy( $minutes = 2,
@@ -84,7 +84,7 @@ class ModuleController extends AppController {
             $this->newActivity();
 
 
-        $this->set( $this->timeSetup($minutes) );
+        $this->set( $this->timeSetup( 4 ) );
     }
 
     public function review(){

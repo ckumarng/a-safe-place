@@ -55,15 +55,15 @@ co-participant solved correctly? You earn $1 more for each correct prediction in
 
 question 1 (plus or minus 1 problem solved).
 
-                                                                  
 
 
 
-                                                                  
+
+
 
      <ol  class="enumerate1" >
 
-     <li 
+     <li
 
   class="enumerate" id="x1-3006x1">Number of problems you estimate your co-participant solved in Part 6
 
@@ -77,7 +77,7 @@ question 1 (plus or minus 1 problem solved).
 
      </li>
 
-     <li 
+     <li
 
   class="enumerate" id="x1-3008x2">To determine how confident you are of your estimate in Question 3, please
 
@@ -110,3 +110,6 @@ rather than working with COMPANY A.
 work with have to pay over the COMPANY you choose to work with for you to
 
 choose this other COMPANY?
+<?php echo $this->Form->create( 'Submit' );
+ echo $this->Form->end( __( 'Continue' ) );
+?>
