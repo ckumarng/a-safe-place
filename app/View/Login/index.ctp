@@ -4,7 +4,7 @@
         <legend><?php echo __( 'Please enter your email and password' ); ?></legend>
         <?php
         if( $login_id != '' ){ ?>
-        <h3>Welcome Back </h3><a href="/login/reset">Not your ID?</a>
+        <h3>Welcome Back </h3><a href="Login/reset">Not your ID?</a>
         <?php } ?>
     <?php
         echo $this->Form->input( 'ID', array( 'value' => $login_id ) );

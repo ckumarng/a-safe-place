@@ -28,7 +28,7 @@ class LoginController extends AppController {
     public function reset() {
         $this->Session->delete( 'pid' );
         $this->Session->destroy();
-        $this->redirect( array('controller' => 'Login') );
+        $this->redirect( array('controller' => '../Login') );
     }
 }
 ?>
