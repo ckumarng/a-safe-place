@@ -12,13 +12,27 @@ class AdminController extends AppController {
     public function index(){
 $this->loadModel( 'Study' );
         if( isset($this->data['StudySet'] ) ){
+            if ( $this->data['StudySet']['group'] == 0 )
+                $group = 'select';
+            elseif ( $this->data['StudySet']['group'] == 1 )
+                $group = 'no-select';
+            else
+                $group = ' ';
 
-            $studyID = $this->Study->newStudy(array(1,2,3,4));
+            $studyID = $this->Study->newStudy(array_unique( explode(',', $this->data['StudySet']['users']) ),$group);
             if ($studyID)
                 $this->Variable->addVariable('currentStudy',$studyID);
         }
         $vars = $this->Variable->getVariables( array('currentStudy','three'));
-        $this->set('study',$this->Study->getStudy($vars['currentStudy']) );
+        $study = $this->Study->getStudy($vars['currentStudy']);
+
+        $this->set( array(
+                'studyID' =>  $study['id'],
+                'studyTime' => $study['date'],
+                'treatment' => $study['treatment_group'],
+                'participants' => $study['participants'],
+            )
+        );
 
 
     }

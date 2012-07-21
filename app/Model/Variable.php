@@ -1,23 +1,31 @@
 <?php
 
 class Variable extends AppModel {
-    public function getVariable( $key ){
+    public function getVariable( $key, $returnKeys = false ){
        $found = $this->find('first', array(
                     'conditions' =>  array(
                         'Variable.key' => $key
                     ),
-                    'fields' => array(
-                        'value'
-                    )
 
                 )
 
             );
-       if ( $found )
-           return $found['Variable']['value'];
+       if ( $found ){
+           $return = array();
+            if(strstr($found['Variable']['value'], 'a:'))
+                $found['Variable']['value'] = unserialize ( $found['Variable']['value'] );
+
+            if ( ! $returnKeys )
+                return $found['Variable']['value'];
+
+            $return[$found['Variable']['id']][$found['Variable']['key']] = $found['Variable']['value'];
+
+            //print_r($return);
+           return $return;
+       }
        return false;
     }
-    public function getVariables( $keys ){
+    public function getVariables( $keys, $returnKeys = false ){
         $find = array();
        // foreach( $keys as $key ){
             $find['Variable.key'] = $keys;
@@ -25,8 +33,6 @@ class Variable extends AppModel {
 
        $found = $this->find('all', array(
                     'conditions' =>  $find
-                ,
-               'fields' => array('key','value')
                 )
             );
        if ( ! $found )
@@ -34,23 +40,34 @@ class Variable extends AppModel {
        $return = array();
        foreach ( $found as $f ){
            //print_r($f);
-           $return[$f['Variable']['key']] = $f['Variable']['value'];
+           if(strstr($f['Variable']['value'], 'a:'))
+                $f['Variable']['value'] = unserialize ( $f['Variable']['value'] );
+
+            if ( $returnKeys )
+                $return[$f['Variable']['id']][$f['Variable']['key']] = $f['Variable']['value'];
+            else {
+                $return[$f['Variable']['key']] = $f['Variable']['value'];
+            }
        }
+
+
+
+      // print_r($return);
        return $return;
 
     }
     public function addVariable( $key, $value ){
-        $check = $this->getVariable($key);
+        $check = $this->getVariable($key , true);
         if( $check )
-            $this->id = $check['Variable']['id'];
+            $this->id = key ( $check );
         //return true;
        return $this->save( array( 'key' => $key, 'value' => $value  ) );
     }
     public function removeVariable( $key ){
-        $remove = $this->getVariable( $key );
+        $remove = $this->getVariable( $key, true );
 
         if( $remove )
-            return $this->delete( (int) $remove['Variable']['id'] );
+            return $this->delete( (int) key( $remove ) );
         else
             return false;
     }

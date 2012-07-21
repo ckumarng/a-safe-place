@@ -91,3 +91,5 @@ CREATE TABLE IF NOT EXISTS `variables` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `key` (`key`)
 ) ENGINE=MyISAM AUTO_INCREMENT=1;
+
+INSERT INTO `logins` (`first_name`, `last_name`, `email`) VALUES ('Some', 'Guy', 'someguy@some.email');
