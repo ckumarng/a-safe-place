@@ -91,7 +91,7 @@ class ModuleController extends AppController {
         //get the number correct and the payment for display
     }
 
-    private function timeSetup($minutes = 2, $nextPage = '/traffic'
+    private function timeSetup($minutes = 2, $nextPage = 'traffic'
 
             ){
 
