@@ -77,11 +77,25 @@ class TrafficController extends AppController {
                 break;
         }
     }
-    private function firstStudyProcessor(){
+    public function firstStudyProcessor(){
         $this->loadModel('Module');
 
-        $this->Module->saveData($this->Session->read('qid'), array(
-            'correct' => $this->Session->read('questionID') - 1,
+        $this->loadModel( 'Answer' );
+        $id = $this->Session->read('pid');
+        $activity = $this->Session->read('activity');
+
+        $activity = 2;
+
+        $module = $this->Module->getCurrentModule($activity,$id);
+        //$module = $this->Module->getCurrentModule(2,$id);
+
+
+        $correct = $this->Answer->find('count', array('conditions' => array( 'correct' => 1, 'module_id' => $module) ) );
+
+        //$this->Module->id-> $module;
+
+        $this->Module->saveData($this->Session->read('qid'), $activity, array(
+            'correct' => $correct,
             'completed' => 1,
             'payment' => 0
         ));
@@ -93,7 +107,7 @@ class TrafficController extends AppController {
         $this->Module->saveData($this->Session->read('qid'), array(
             'correct' => $this->Session->read('questionID') - 1,
             'completed' => 1,
-            'payment' => 3 
+            'payment' => 3
         ));
         return true;
     }

@@ -13,8 +13,8 @@ class ModuleController extends AppController {
     function beforeFilter(){
         $this->LoginCheck();
 
-        if ( ! $this->seenInstructions() )
-            $this->redirect ( array('controller' => 'Instructions', 'action' => 's'.$this->Session->read( 'activity' ) ) );
+        //if ( ! $this->seenInstructions() )
+            //$this->redirect ( array('controller' => 'Instructions', 'action' => 's'.$this->Session->read( 'activity' ) ) );
 
     }
     private function seenInstructions(){
@@ -69,7 +69,10 @@ class ModuleController extends AppController {
             $this->newActivity();
 
 
-        $this->set( $this->timeSetup($minutes) );
+        //$this->set( $this->timeSetup($minutes) );
+        $this->set( $this->timeSetup(1) );
+        
+
     }
 
     /*
@@ -84,7 +87,8 @@ class ModuleController extends AppController {
             $this->newActivity();
 
 
-        $this->set( $this->timeSetup( 4 ) );
+        //$this->set( $this->timeSetup( 4 ) );
+        $this->set( $this->timeSetup(1) );
     }
 
     public function review(){
@@ -182,6 +186,31 @@ class ModuleController extends AppController {
 
         //print_r($numbers);
         return $data;
+
+    }
+    public function robotsPair(){
+        $this->loadModel('RobotLink');
+
+        $userArray = array(2567,37,587,903,6455,7,387,65654,453,47,6,364,65,23,676,234,6556,345,87,56);
+
+        //$data = array('user_id' => '',
+                    //    'robot_rank' => '');
+
+        foreach ( $userArray as $user ){
+            $data[] = array(
+                'user_id' => $user,
+                'robot_rank' => rand(1, 100));
+        }
+       // debug($data);
+        debug($this->RobotLink->saveMany($data));
+
+
+
+        echo 'ok';
+    }
+    public function rank(){
+        $this->loadModel('Rank');
+
 
     }
 }
