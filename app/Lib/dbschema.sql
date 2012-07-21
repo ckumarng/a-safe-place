@@ -16,15 +16,16 @@ CREATE TABLE IF NOT EXISTS `survey` (
   `13` varchar(254) NOT NULL DEFAULT '',
   PRIMARY KEY (`user_id`)
 ) ;
--- updated: original
-CREATE TABLE IF NOT EXISTS `answers` (
+-- updated: 7/21/2012 1:39 pm
+CREATE TABLE `answers` (
   `id` bigint(10) unsigned NOT NULL AUTO_INCREMENT,
   `module_id` bigint(10) unsigned NOT NULL,
   `question_id` int(10) unsigned NOT NULL,
   `time_taken` time NOT NULL,
-  `correct` smallint NOT NULL,
+  `correct` smallint(6) NOT NULL,
+  `answered` smallint(128) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB;
+) ENGINE=InnoDB ;
 -- updated: 7/19/2012 4:50pm
 CREATE TABLE IF NOT EXISTS `modules` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,

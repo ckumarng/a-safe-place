@@ -91,9 +91,10 @@ class ModuleController extends AppController {
         //get the number correct and the payment for display
     }
 
-    private function timeSetup($minutes = 2,
-                            $nextPage = '../traffic'
+    private function timeSetup($minutes = 2, $nextPage = '/traffic'
+
             ){
+
 
         //Load random number module
         $this->loadModel('RandomNumber');
@@ -158,7 +159,8 @@ class ModuleController extends AppController {
                                     'module_id' => $this->Session->read('qid'),
                                     'question_id' => $qid,
                                     'time_taken' => $timeTaken,
-                                    'correct' => $correct
+                                    'correct' => $correct,
+                                    'answered' => $this->data['Q1']['answer']
                                 )
                             );
             $this->Answer->save($toSave);
@@ -178,7 +180,7 @@ class ModuleController extends AppController {
             'timeleft' => $timeleft
         );
 
-        print_r($numbers);
+        //print_r($numbers);
         return $data;
 
     }
