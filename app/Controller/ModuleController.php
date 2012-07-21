@@ -58,32 +58,41 @@ class ModuleController extends AppController {
 //
 //	}
     /*
-     *   firstStudy - This function handles moving the user through a series
-     *               of questions, tracking the time taken and progress.
-     *               The following general logic is implemented here:
-     *   * Check to see if the user is logged in; if not, redirect to
-     *       login page.
-     *   * Check to see if the timer is already running; if not, initialize
-     *       it in the session.
-     *   * Check to see if the question has been answered: if so, note the
-     *
-     *   answer and move on.
+     *   firstStudy - Initiate the second study (first checking to see if the 
+     *     user is logged in; if not, redirect to login page).
      */
     function firstStudy( $minutes = 2,
-                            $nextPage = '/traffic'
+                            $nextPage = '../traffic'
     ){
 
         if( ! $this->Session->check('qid') )
             $this->newActivity();
 
 
-        $this->set( $this->timeSetup() );
+        $this->set( $this->timeSetup($minutes) );
     }
+
+    /*
+     *   secondStudy - Initiate the second study (first checking to see if the 
+     *     user is logged in; if not, redirect to login page).
+     */
+    function secondStudy( $minutes = 2,
+                            $nextPage = '../traffic'
+    ){
+
+        if( ! $this->Session->check('qid') )
+            $this->newActivity();
+
+
+        $this->set( $this->timeSetup($minutes) );
+    }
+
     public function review(){
         //get the number correct and the payment for display
     }
+
     private function timeSetup($minutes = 2,
-                            $nextPage = '/traffic'
+                            $nextPage = '../traffic'
             ){
 
         //Load random number module

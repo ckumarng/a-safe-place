@@ -69,6 +69,9 @@ class TrafficController extends AppController {
             case 1:
                 return $this->firstStudyProcessor();
                 break;
+            case 2:
+                return $this->secondStudyProcessor();
+                break;
             default :
                 return false;
                 break;
@@ -81,6 +84,16 @@ class TrafficController extends AppController {
             'correct' => $this->Session->read('questionID') - 1,
             'completed' => 1,
             'payment' => 0
+        ));
+        return true;
+    }
+    private function secondStudyProcessor(){
+        $this->loadModel('Module');
+
+        $this->Module->saveData($this->Session->read('qid'), array(
+            'correct' => $this->Session->read('questionID') - 1,
+            'completed' => 1,
+            'payment' => 3 
         ));
         return true;
     }
