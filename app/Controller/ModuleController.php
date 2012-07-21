@@ -76,6 +76,16 @@ class ModuleController extends AppController {
         if( ! $this->Session->check('qid') )
             $this->newActivity();
 
+
+        $this->set( $this->timeSetup() );
+    }
+    public function review(){
+        //get the number correct and the payment for display
+    }
+    private function timeSetup($minutes = 2,
+                            $nextPage = '/traffic'
+            ){
+
         //Load random number module
         $this->loadModel('RandomNumber');
 
@@ -158,10 +168,10 @@ class ModuleController extends AppController {
             'nextPage' => $nextPage,
             'timeleft' => $timeleft
         );
-        $this->set($data);
-    }
-    public function review(){
-        //get the number correct and the payment for display
+
+        print_r($numbers);
+        return $data;
+
     }
 }
 ?>
