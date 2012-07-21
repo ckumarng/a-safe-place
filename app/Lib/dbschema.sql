@@ -40,19 +40,20 @@ CREATE TABLE IF NOT EXISTS `modules` (
   PRIMARY KEY (`id`),
   KEY `user` (`user`)
 );
--- updated: original
-CREATE TABLE IF NOT EXISTS `rank` (
+-- updated: 7/21/2012 4:04 pm
+CREATE TABLE IF NOT EXISTS  `ranks` (
   `study_id` bigint(10) unsigned NOT NULL,
-  `rank_array` tinytext NOT NULL,
+  `user_id` bigint(10) unsigned NOT NULL,
+  `rank` int(3) unsigned NOT NULL,
+  `percentile` int(3) unsigned NOT NULL,
   PRIMARY KEY (`study_id`)
-) ;
--- updated: original
-CREATE TABLE IF NOT EXISTS `robot_link` (
+) ENGINE=InnoDB
+-- updated: 7/21/2012 2:41 pm
+CREATE TABLE IF NOT EXISTS  `robot_links` (
   `user_id` bigint(10) unsigned NOT NULL,
   `robot_rank` int(10) unsigned NOT NULL,
-  `user_rank` int(10) unsigned NOT NULL,
   PRIMARY KEY (`user_id`)
-) ;
+) ENGINE=InnoDB ;
 -- updated: 7/20/2012 4:56pm
 CREATE TABLE IF NOT EXISTS `studies` (
   `id` bigint(10) unsigned NOT NULL AUTO_INCREMENT,
