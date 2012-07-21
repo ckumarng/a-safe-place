@@ -185,4 +185,66 @@ class ModuleController extends AppController {
 
     }
 }
+
+/*
+ * rateSelection - Assigns the way wages are calculated for each user.
+ *   In the study, there are two main options:
+ *    1) Users get to choose whether they would like piece-rate or team-rate.
+ *    2) Users are randomly assigned to piece-rate or team-rate.
+ *   This method will, if given a mapping of user-IDs to rates, assign them
+ *   accordingly.  Otherwise, if the mapping is not provided as an argument,
+ *   this function will randomly assign all unassigned userIDs to either piece
+ *   or team rate (with a uniform probability). 
+ */
+private function rateSelection($choices = array()){
+  $this->loadModel('Login');
+  $this->loadModel('Study');
+  $this->loadModel('Variable');
+
+  $logins = $this->Login->getCurrentParticipants();
+
+  // Check to see if we are assigning, or if the users chose:
+  if (count($choices) == 0){
+    // We are choosing for the users randomly:
+    foreach $login ($logins){
+        // Choose a number, 0 or 1:
+        // 0 == piece-rate, 1 == team-rate
+        $choices[$login] = rand(0,1);
+    }
+  } 
+
+  // Load the data:
+  foreach $login ($logins){
+    $this->Login->setRate($login, $choices[$login]);
+  }
+}
+
+/*
+ * This method will partition the current participants into team pairings.
+ */
+private function createTeams(){
+  $this->loadModel('Login');
+  $this->loadModel('Study');
+  $this->loadModel('Variable');
+
+  $logins = $this->Login->getCurrentParticipants();
+  $n1 = 0;
+  $n2 = 0;
+
+  // First check the total number of piece-rate(n1) and team-rate (n2) 
+  // participants.
+  foreach $login ($logins){
+    // Get the rate of this login:
+    $params = array(
+        'conditions' => array('Login.id' => $login) //array of conditions
+    )
+    $loginEntry = $this->Login->find('first',$params);
+    if ($loginEntry->Login['rate'] == 'piece'){
+      $n1++;
+    } else if ($loginEntry->Login['rate'] == 'team'){
+      $n2++;
+    }
+  }
+}
+
 ?>

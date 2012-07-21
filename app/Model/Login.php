@@ -59,5 +59,46 @@ class Login extends AppModel {
 
         return false;
     }
+
+    /*
+     * Sets the 'rate' field for a login to either 'piece' (0), or 'team' (1):
+     */
+    public function setRate( $userID, $rate ){
+        $this->id = (int) $userID;
+
+        $value = ($rate == 0 ? 'piece' : 'team);
+        if(  $this->saveField('rate', $value) )
+            return true;
+        else {
+
+            echo 'Could not set rate for user id $userID, rate $rate';
+            return false;
+        }
+
+
+        #return $this->save( array( 'rate' => $value ) );
+    }
+
+    /*
+     * Get the list of IDs related to the current study only.
+     */
+    public function getCurrentParticipants(){
+        $this->loadModel(Study);
+        $this->loadModel(Variable);
+
+        $currentStudyID = $this->Variable->getValue("currentStudy");
+        
+        $params = array(
+            'conditions' => array('Study.id' => $currentStudyID), //array of conditions
+            'fields' => array('Study.participants'), //array of field names
+        );
+
+
+        $participants = array();
+        $p_ary = $this->Study->find('first', $params);
+        $participantArray = unserialize($p_ary["Study"]["participants"]);
+        return $participantArray;
+
+    }
 }
 ?>
