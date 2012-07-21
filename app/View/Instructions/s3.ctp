@@ -18,3 +18,6 @@ individual payment scheme.
 <!--l. 148--><p class="indent" >   Your task begins now:
 
 <!--l. 150--><p class="indent" >   mention correct or wrong
+<?php echo $this->Form->create( 'Submit' );
+ echo $this->Form->end( __( 'Continue' ) );
+?>

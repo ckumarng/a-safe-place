@@ -13,8 +13,8 @@ class ModuleController extends AppController {
     function beforeFilter(){
         $this->LoginCheck();
 
-        //if ( ! $this->seenInstructions() )
-           // $this->redirect ( array('controller' => 'Instructions', 'action' => 's'.$this->Session->read( 'activity' ) ) );
+        if ( ! $this->seenInstructions() )
+            $this->redirect ( array('controller' => 'Instructions', 'action' => 's'.$this->Session->read( 'activity' ) ) );
 
     }
     private function seenInstructions(){
@@ -58,7 +58,7 @@ class ModuleController extends AppController {
 //
 //	}
     /*
-     *   firstStudy - Initiate the second study (first checking to see if the 
+     *   firstStudy - Initiate the second study (first checking to see if the
      *     user is logged in; if not, redirect to login page).
      */
     function firstStudy( $minutes = 2,
@@ -73,7 +73,7 @@ class ModuleController extends AppController {
     }
 
     /*
-     *   secondStudy - Initiate the second study (first checking to see if the 
+     *   secondStudy - Initiate the second study (first checking to see if the
      *     user is logged in; if not, redirect to login page).
      */
     function secondStudy( $minutes = 2,
@@ -84,16 +84,17 @@ class ModuleController extends AppController {
             $this->newActivity();
 
 
-        $this->set( $this->timeSetup($minutes) );
+        $this->set( $this->timeSetup( 4 ) );
     }
 
     public function review(){
         //get the number correct and the payment for display
     }
 
-    private function timeSetup($minutes = 2,
-                            $nextPage = '../traffic'
+    private function timeSetup($minutes = 2, $nextPage = '/traffic'
+
             ){
+
 
         //Load random number module
         $this->loadModel('RandomNumber');
@@ -158,7 +159,8 @@ class ModuleController extends AppController {
                                     'module_id' => $this->Session->read('qid'),
                                     'question_id' => $qid,
                                     'time_taken' => $timeTaken,
-                                    'correct' => $correct
+                                    'correct' => $correct,
+                                    'answered' => $this->data['Q1']['answer']
                                 )
                             );
             $this->Answer->save($toSave);
@@ -178,7 +180,7 @@ class ModuleController extends AppController {
             'timeleft' => $timeleft
         );
 
-        print_r($numbers);
+        //print_r($numbers);
         return $data;
 
     }

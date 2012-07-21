@@ -43,11 +43,11 @@ We refer to this payment scheme as the team payment.
 
 the individual payment scheme in COMPANY A, please read the following
 
-                                                                  
 
 
 
-                                                                  
+
+
 
 examples: Suppose, for example, that you and your co-participant each solve
 
@@ -79,7 +79,7 @@ completed.
 
 <!--l. 201--><p class="indent" >
 
-   <h1 class="likepartHead"><a 
+   <h1 class="likepartHead"><a
 
  id="x1-2000"></a>Comprehension questionnaire </h1>
 
@@ -87,7 +87,7 @@ completed.
 
      <ol  class="enumerate1" >
 
-     <li 
+     <li
 
   class="enumerate" id="x1-2002x1">If you solved 50 problems, how much would you be paid in the individual
 
@@ -95,7 +95,7 @@ completed.
 
      </li>
 
-     <li 
+     <li
 
   class="enumerate" id="x1-2004x2">If you solved 60 problems, how much would you be paid in the individual
 
@@ -103,7 +103,7 @@ completed.
 
      </li>
 
-     <li 
+     <li
 
   class="enumerate" id="x1-2006x3">If you solved 40 problems, how much would you be paid in the individual
 
@@ -111,7 +111,7 @@ completed.
 
      </li>
 
-     <li 
+     <li
 
   class="enumerate" id="x1-2008x4">If you and your co-participant each solve 50 problems, how much will you
 
@@ -119,7 +119,7 @@ completed.
 
      </li>
 
-     <li 
+     <li
 
   class="enumerate" id="x1-2010x5">If you solve 60 problems and your co-participant solves 40, how much will
 
@@ -127,7 +127,7 @@ completed.
 
      </li>
 
-     <li 
+     <li
 
   class="enumerate" id="x1-2012x6">If you solve 40 problems and your co-participant solves 60, how much will
 
@@ -139,13 +139,13 @@ completed.
 
 <!--l. 221--><p class="indent" >
 
-                                                                  
 
 
 
-                                                                  
 
-   <h1 class="likepartHead"><a 
+
+
+   <h1 class="likepartHead"><a
 
  id="x1-3000"></a>Interim questions</h1>
 
@@ -161,7 +161,7 @@ question 1 (plus or minus 1 problem solved).
 
      <ol  class="enumerate1" >
 
-     <li 
+     <li
 
   class="enumerate" id="x1-3002x1">Number of problems you estimate your co-participant solved in Part 4
 
@@ -169,7 +169,7 @@ question 1 (plus or minus 1 problem solved).
 
      </li>
 
-     <li 
+     <li
 
   class="enumerate" id="x1-3004x2">To determine how confident you are you of your estimate in Question 1,
 
@@ -178,3 +178,6 @@ question 1 (plus or minus 1 problem solved).
      estimate is extremely accurate, and 1 indicates you really have no idea of
 
      what your co-participant produced.</li></ol>
+<?php echo $this->Form->create( 'Submit' );
+ echo $this->Form->end( __( 'Continue' ) );
+?>

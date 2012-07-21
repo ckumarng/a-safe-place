@@ -53,7 +53,7 @@ class TrafficController extends AppController {
         } else {
             $this->Session->write( 'activity', -1 );
             $this->loadModel( 'Login' );
-            $this->Login->setComplete( $this->Session->read( 'pid' ) );
+            //$this->Login->setComplete( $this->Session->read( 'pid' ) );
             $this->redirect( array('controller' => 'ThankYou') );
         }
 
