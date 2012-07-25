@@ -56,7 +56,7 @@ class ModuleController extends AppController {
 //            //$this->RandomNumbers->reset();
 //         debug($this->data);
 //
-//	}
+//}
     /*
      *   firstStudy - Initiate the second study (first checking to see if the
      *     user is logged in; if not, redirect to login page).
@@ -71,7 +71,7 @@ class ModuleController extends AppController {
 
         //$this->set( $this->timeSetup($minutes) );
         $this->set( $this->timeSetup(1) );
-        
+
 
     }
 
@@ -222,27 +222,27 @@ class ModuleController extends AppController {
    *   This method will, if given a mapping of user-IDs to rates, assign them
    *   accordingly.  Otherwise, if the mapping is not provided as an argument,
    *   this function will randomly assign all unassigned userIDs to either piece
-   *   or team rate (with a uniform probability). 
+   *   or team rate (with a uniform probability).
    */
   private function rateSelection($choices = array()){
     $this->loadModel('Login');
     $this->loadModel('Study');
     $this->loadModel('Variable');
-  
+
     $logins = $this->Login->getCurrentParticipants();
 
     // Check to see if we are assigning, or if the users chose:
     if (count($choices) == 0){
       // We are choosing for the users randomly:
-      foreach $login ($logins){
+      foreach ($logins as $login){
           // Choose a number, 0 or 1:
           // 0 == piece-rate, 1 == team-rate
           $choices[$login] = rand(0,1);
       }
-    } 
+    }
 
     // Load the data:
-    foreach $login ($logins){
+    foreach ($logins as $login){
       $this->Login->setRate($login, $choices[$login]);
     }
   }
@@ -252,79 +252,80 @@ class ModuleController extends AppController {
    */
   private function createTeams(){
 
-    // ($pRateParticipants, $tRateParticipants) = getParticipantsByRate():
-    // $n1 = length($pRateParticipants)
-    // $n2 = length($tRateParticipants)
+//    ($pRateParticipants, $tRateParticipants) = getParticipantsByRate():
+//    $n1 = length($pRateParticipants)
+//    $n2 = length($tRateParticipants)
 
-    // If n1 == 0:
-        // While length(tRateParticipants) >= 2:
-            // Randomly pick 2 ids from tRateParticipants and assign a team 
-	    //    number Nt; remove ids from tRateParticipants:
-            // If Nt % 2 == 0:
-                // Make those 2 ids work for team wage
-                // Route to "treatment E" instructions
-            // Else 
-                // Make those 2 ids work for piece wage
-                // Route to "treatment F" instructions
-    // Else: (e.g. n1 > 0)
-        // If n2 == 0:
-            // While length(pRateParticipants) >= 2:
-                // Randomly pick 2 ids from pRateParticipants and assign a team 
-	        //    number Nt; remove ids from pRateParticipants:
-                // Assign a team number, Nt
-                // If Nt % 2 == 0:
-                    // Make those 2 ids work for piece wage
-                    // Route to "treatment C" instructions
-                // Else 
-                    // Make those 2 ids work for team wage
-                    // Route to "treatment D" instructions
-        // Else: (e.g. n2 > 0)
-            // While length(pRateParticipants) >= 1 && 
-            //       length(tRateParticipants) >=1:
-                // Randomly pick 1 id from pRateParticipants, and one
-                // from tRateParticipants (removing from respective arrays)
-                // Assign to a team number, Nt.
-                // If Nt % 2 == 0:
-                    // Make those 2 ids work for team wage
-                    // Route to "treatment A" instructions
-                // Else 
-                    // Make those 2 ids work for piece wage
-                    // Route to "treatment D" instructions
-            // While length(pRateParticipants) >= 2:
-                // Randomly pick 2 ids from pRateParticipants and assign a team 
-	        //    number Nt; remove ids from pRateParticipants:
-                // If Nt % 2 == 0:
-                    // Make those 2 ids work for team wage
-                    // Route to "treatment B" instructions
-                // Else 
-                    // Make those 2 ids work for piece wage
-                    // Route to "treatment C" instructions
-            // While length(tRateParticipants) >= 2:
-                // Randomly pick 2 ids from tRateParticipants and assign a team 
-	        //    number Nt; remove ids from tRateParticipants:
-                // If Nt % 2 == 0:
-                    // Make those 2 ids work for team wage
-                    // Route to "treatment F" instructions
-                // Else 
-                    // Make those 2 ids work for piece wage
-                    // Route to "treatment E" instructions
-    // If length(pRateParticipant) > 0:
-        // One team will need 3 people on it; put remaining 
-	// pRateParticipant on the last team (3 members on that team)
-        // (don't forget to update the participant's treatment)
-    // If length(tRateParticipant) > 0:
-        // One team will need 3 people on it; put remaining 
-	// tRateParticipant on the last team (3 members on that team)
-        // (don't forget to update the participant's treatment)
-    }
+//    If n1 == 0:
+//        While length(tRateParticipants) >= 2:
+//            Randomly pick 2 ids from tRateParticipants and assign a team
+//            number Nt; remove ids from tRateParticipants:
+//            If Nt % 2 == 0:
+//                Make those 2 ids work for team wage
+//                Route to "treatment E" instructions
+//            Else
+//                Make those 2 ids work for piece wage
+//                Route to "treatment F" instructions
+//    Else: (e.g. n1 > 0)
+//        If n2 == 0:
+//            While length(pRateParticipants) >= 2:
+//                Randomly pick 2 ids from pRateParticipants and assign a team
+//                number Nt; remove ids from pRateParticipants:
+//                Assign a team number, Nt
+//                If Nt % 2 == 0:
+//                    Make those 2 ids work for piece wage
+//                    Route to "treatment C" instructions
+//                Else
+//                    Make those 2 ids work for team wage
+//                    Route to "treatment D" instructions
+//    Else: (e.g. n2 > 0)
+//        While length(pRateParticipants) >= 1 &&
+//            length(tRateParticipants) >=1:
+//            Randomly pick 1 id from pRateParticipants, and one
+//            from tRateParticipants (removing from respective arrays)
+//            Assign to a team number, Nt.
+//                If Nt % 2 == 0:
+//                    Make those 2 ids work for team wage
+//                    Route to "treatment A" instructions
+//                Else
+//                    Make those 2 ids work for piece wage
+//                    Route to "treatment D" instructions
+//                    While length(pRateParticipants) >= 2:
+//                    Randomly pick 2 ids from pRateParticipants and assign a team
+//                    number Nt; remove ids from pRateParticipants:
+//                If Nt % 2 == 0:
+//                    Make those 2 ids work for team wage
+//                    Route to "treatment B" instructions
+//                Else
+//                    Make those 2 ids work for piece wage
+//                    Route to "treatment C" instructions
+//                    While length(tRateParticipants) >= 2:
+//                    Randomly pick 2 ids from tRateParticipants and assign a team
+//                    number Nt; remove ids from tRateParticipants:
+//                If Nt % 2 == 0:
+//                    Make those 2 ids work for team wage
+//                    Route to "treatment F" instructions
+//                Else
+//                    Make those 2 ids work for piece wage
+//                    Route to "treatment E" instructions
+//
+//    If length(pRateParticipant) > 0:
+//        One team will need 3 people on it; put remaining
+//        pRateParticipant on the last team (3 members on that team)
+//        (don't forget to update the participant's treatment)
+//    If length(tRateParticipant) > 0:
+//        One team will need 3 people on it; put remaining
+//        tRateParticipant on the last team (3 members on that team)
+//        (don't forget to update the participant's treatment)
+//    }
   }
 
   /*
    * Return two array references: the first array is current participants
    *  under piece rate, the second is current participants under team rate.
    */
-  private computeRateCounts(){
-  
+  private function computeRateCounts(){
+
     $this->loadModel('Login');
     $this->loadModel('Study');
     $this->loadModel('Variable');
@@ -333,22 +334,22 @@ class ModuleController extends AppController {
     $pp = array();
     $tp = array();
 
-    // First check the total number of piece-rate(n1) and team-rate (n2) 
+    // First check the total number of piece-rate(n1) and team-rate (n2)
     // participants.
-    foreach $login ($logins){
+    foreach ($logins as $login){
       // Get the rate of this login:
       $params = array(
           'conditions' => array('Login.id' => $login) //array of conditions
-      )
+      );
       $loginEntry = $this->Login->find('first',$params);
-      if ($loginEntry->Login['rate'] == 'piece'){
+      if ($loginEntry->Login['rate'] == 'piece') {
          // push($pp, $login);
-      } else if ($loginEntry->Login['rate'] == 'team'){
+      } else if ($loginEntry->Login['rate'] == 'team') {
          // push($tp, $login);
       }
     }
 
-    return array($pp, $tp);
+    return array_merge($pp, $tp);
 
   }
 }

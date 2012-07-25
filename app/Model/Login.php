@@ -66,7 +66,7 @@ class Login extends AppModel {
     public function setRate( $userID, $rate ){
         $this->id = (int) $userID;
 
-        $value = ($rate == 0 ? 'piece' : 'team);
+        $value = ($rate == 0 ? 'piece' : 'team');
         if(  $this->saveField('rate', $value) )
             return true;
         else {
@@ -87,14 +87,14 @@ class Login extends AppModel {
         $this->loadModel(Variable);
 
         $currentStudyID = $this->Variable->getValue("currentStudy");
-        
+
         $params = array(
             'conditions' => array('Study.id' => $currentStudyID), //array of conditions
             'fields' => array('Study.participants'), //array of field names
         );
 
 
-        $participants = array();
+        $participantArray = array();
         $p_ary = $this->Study->find('first', $params);
         $participantArray = unserialize($p_ary["Study"]["participants"]);
         return $participantArray;
